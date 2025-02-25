@@ -9,7 +9,6 @@ nombre (VARCHAR(100), NOT NULL)
 apellido (VARCHAR(100), NOT NULL)
 email (VARCHAR(150), UNIQUE, NOT NULL)
 telefono (VARCHAR(15), NOT NULL)
-direccion (TEXT, NULL)
 dni_pasaporte (VARCHAR(50), UNIQUE, NOT NULL)
 ```
 
