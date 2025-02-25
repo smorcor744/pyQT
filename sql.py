@@ -46,4 +46,4 @@ c.execute('''CREATE TABLE IF NOT EXISTS empleados
         telefono TEXT NOT NULL)''')
 conn.commit()
 
-c.close()
+conn.close()
