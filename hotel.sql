@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS clientes (
 -- Crear tabla habitaciones
 CREATE TABLE IF NOT EXISTS habitaciones (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    numero TEXT NOT NULL,
-    tipo TEXT NOT NULL,
+    numero TEXT UNIQUE NOT NULL,
+    tipo TEXT NOT NULL CHECK(tipo IN ('Individual', 'Doble')),
     precio_noche REAL NOT NULL,
     disponible BOOLEAN DEFAULT TRUE
 );
@@ -20,13 +20,13 @@ CREATE TABLE IF NOT EXISTS habitaciones (
 -- Crear tabla reservas
 CREATE TABLE IF NOT EXISTS reservas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_cliente INTEGER NOT NULL,
-    id_habitacion INTEGER NOT NULL,
+    email_cliente TEXT NOT NULL,
+    numero_habitacion TEXT NOT NULL,
     fecha_checkin DATE NOT NULL,
     fecha_checkout DATE NOT NULL,
     estado TEXT DEFAULT 'Pendiente' CHECK(estado IN ('Pendiente', 'Confirmada', 'Cancelada', 'Finalizada')),
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id) ON DELETE CASCADE,
-    FOREIGN KEY (id_habitacion) REFERENCES habitaciones(id) ON DELETE CASCADE
+    FOREIGN KEY (email_cliente) REFERENCES clientes(email) ON DELETE CASCADE,
+    FOREIGN KEY (numero_habitacion) REFERENCES habitaciones(numero) ON DELETE CASCADE
 );
 
 -- Crear tabla pagos
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS pagos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     id_reserva INTEGER NOT NULL,
     monto REAL NOT NULL,
-    metodo_pago TEXT NOT NULL CHECK(metodo_pago IN ('Tarjeta', 'Efectivo', 'Transferencia')),
+    metodo_pago TEXT NOT NULL CHECK(metodo_pago IN ('Tarjeta', 'Efectivo')),
     fecha_pago DATE NOT NULL,
     FOREIGN KEY (id_reserva) REFERENCES reservas(id) ON DELETE CASCADE
 );

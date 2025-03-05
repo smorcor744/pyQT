@@ -1,6 +1,6 @@
 import sqlite3
 
-class Base_de_datos():
+class BD_clientes():
 
     def __init__(self, db_name="hotel.db"):
         self.db_name = db_name
@@ -9,7 +9,7 @@ class Base_de_datos():
         """Método privado para realizar la conexión a la base de datos."""
         return sqlite3.connect(self.db_name)
 
-    def insertar_usuario(self, nombre, apellido1, apellido2, dni, email):
+    def insertar_cliente(self, nombre, apellido1, apellido2, dni, email):
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
@@ -33,7 +33,7 @@ class Base_de_datos():
             conexion.close()  # Cerrar la conexión de manera segura
 
         
-    def obtener_usuarios(self):
+    def obtener_clientes(self):
         """Obtiene todos los clientes registrados en la base de datos."""
         try:
             conexion = self._conectar()
@@ -41,9 +41,9 @@ class Base_de_datos():
 
             # Consultar todos los usuarios
             cursor.execute("SELECT * FROM clientes")
-            usuarios = cursor.fetchall()  # Obtener todos los registros
+            clientes = cursor.fetchall()  # Obtener todos los registros
 
-            return usuarios  # Devolver los resultados
+            return clientes  # Devolver los resultados
 
         except Exception as e:
             print(f"Error al obtener los clientes: {e}")
@@ -51,23 +51,51 @@ class Base_de_datos():
         finally:
             conexion.close()  # Cerrar la conexión de manera segura
 
-    def eliminar_usuario(self, user_id):
+    def eliminar_cliente(self, email):
         """Elimina un usuario de la base de datos mediante su ID."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
 
             # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM clientes WHERE id = ?", (user_id,))
+            cursor.execute("DELETE FROM clientes WHERE email = ?", (email))
             conexion.commit()
 
             # Verificar si el usuario fue eliminado
             if cursor.rowcount > 0:
-                return True, "Usuario eliminado correctamente."
+                return True, "Cliente eliminado correctamente."
             else:
-                return False, "No se encontró un usuario con ese ID."
+                return False, "No se encontró un cliente con ese ID."
 
         except Exception as e:
-            return False, f"Error al eliminar el usuario: {e}"
+            return False, f"Error al eliminar el cliente: {e}"
         finally:
             conexion.close()  # Cerrar la conexión de manera segura
+
+
+    def actualizar_cliente(self, user_id, nombre, apellido1, apellido2, dni, email):
+        """Actualiza los datos de un usuario en la base de datos mediante su ID."""
+        try:
+            conexion = self._conectar()
+            cursor = conexion.cursor()
+
+            # Actualizar los datos del usuario
+            cursor.execute('''
+                UPDATE clientes
+                SET nombre = ?, apellido1 = ?, apellido2 = ?, dni = ?, email = ?
+                WHERE id = ?''', (nombre, apellido1, apellido2, dni, email, user_id))
+
+            conexion.commit()
+
+            # Verificar si se actualizó algún registro
+            if cursor.rowcount > 0:
+                return True, "Cliente actualizado correctamente."
+            else:
+                return False, "No se encontró un cliente con ese ID."
+
+        except Exception as e:
+            return False, f"Error al actualizar el cliente: {e}"
+        finally:
+            conexion.close()  # Cerrar la conexión de manera segura
+
+
