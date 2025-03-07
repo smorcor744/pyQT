@@ -40,14 +40,14 @@ class VentanaPrincipal(QMainWindow):
 
     # Abre la ventana de clientes
     def abrir_ventana_clientes(self):
-        from window_cliente import VentanaClientes
+        from cliente.window_cliente import VentanaClientes
         self.window_cliente = VentanaClientes()
         self.window_cliente.show()
         self.hide()
 
     # Abre la ventana de empleados
     def abrir_ventana_empleados(self):
-        from ventana_empleado import VentanaEmpleados
+        from empleado.ventana_empleado import VentanaEmpleados
         self.ventana_empleado = VentanaEmpleados()
         self.ventana_empleado.show()
         self.hide()
