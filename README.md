@@ -1,5 +1,8 @@
 # pyQT
+<<<<<<< HEAD
 # pyQT
+=======
+>>>>>>> 4e28c084caff3f2e14d2e1a31611c15e5fbd63f5
 
 # Estructura de la Base de Datos
 
@@ -10,7 +13,10 @@ nombre (VARCHAR(100), NOT NULL)
 apellido (VARCHAR(100), NOT NULL)
 email (VARCHAR(150), UNIQUE, NOT NULL)
 telefono (VARCHAR(15), NOT NULL)
+<<<<<<< HEAD
 direccion (TEXT, NULL)
+=======
+>>>>>>> 4e28c084caff3f2e14d2e1a31611c15e5fbd63f5
 dni_pasaporte (VARCHAR(50), UNIQUE, NOT NULL)
 ```
 
@@ -200,3 +206,7 @@ self.setStyleSheet("""
     }
 """)
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e28c084caff3f2e14d2e1a31611c15e5fbd63f5
