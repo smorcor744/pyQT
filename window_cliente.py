@@ -2,24 +2,8 @@ import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-import sqlite3
 from bd_clientes import BD_clientes
 
-
-def ejecutar_sql():
-    """Ejecuta el archivo .sql que contiene las instrucciones de creación de tablas."""
-    try:
-        with open("hotel.sql", "r") as archivo_sql:
-            sql_script = archivo_sql.read()
-
-        conexion = sqlite3.connect('hotel.db')
-        cursor = conexion.cursor()
-        cursor.executescript(sql_script)
-        conexion.commit()
-        conexion.close()
-        print("Base de datos configurada correctamente.")
-    except Exception as e:
-        print(f"Error al ejecutar el script SQL: {e}")
 
 class VentanaClientes(QMainWindow):
     def __init__(self):
@@ -34,12 +18,12 @@ class VentanaClientes(QMainWindow):
                 background-image: url(fondo.jpg);
                 background-position: center;
                 background-repeat: no-repeat;
-                background-size: cover;
             }
         """)
 
         self.bt_registrar_cliente.clicked.connect(self.registrar_cliente)
         self.bt_mostrar_clientes.clicked.connect(self.mostrar_clientes)
+        self.bt_buscar_cliente.clicked.connect(self.buscar_cliente)
         self.bt_eliminar_cliente.clicked.connect(self.eliminar_cliente)
         self.bt_actualizar_cliente.clicked.connect(self.actualizar_cliente)
         self.bt_atras.clicked.connect(self.ir_atras)
@@ -89,17 +73,41 @@ class VentanaClientes(QMainWindow):
                 for col, value in enumerate(cliente):
                     self.tablaClientes.setItem(row, col, QTableWidgetItem(str(value)))
 
+    def buscar_cliente(self):
+        email = self.text_email_buscar.text()
+
+        # Validar que los campos no estén vacíos
+        if not (email):
+            QMessageBox.warning(self, "Error", "Campo obligatorio.")
+            return
+        
+        cliente = BD_clientes().buscar_cliente_por_email(email)
+
+        if cliente is None:
+            QMessageBox.warning(self, "Advertencia", "No se encontró un cliente con ese email.")
+        else:
+            # Crear una tabla para mostrar los usuarios
+            self.tablaClientes.setRowCount(1)  # Número de filas
+            self.tablaClientes.setColumnCount(6)  # 6 columnas: id, nombre, apellido1, apellido2, dni, email
+
+            # Configurar los encabezados de las columnas
+            self.tablaClientes.setHorizontalHeaderLabels(["ID", "Nombre", "Apellido1", "Apellido2", "Email", "DNI"])
+
+            # Llenar la tabla con los datos de los usuarios
+            for col, value in enumerate(cliente):
+                self.tablaClientes.setItem(0, col, QTableWidgetItem(str(value)))
+
 
     def eliminar_cliente(self):
         # Obtener el ID del usuario que se desea eliminar (puede ser desde una selección en una tabla, por ejemplo)
-        cliente_id = self.textIdDelete.text()  # Suponiendo que tienes un campo de texto para ingresar el ID del usuario
+        email_cliente = self.text_email_cliente.text()  # Suponiendo que tienes un campo de texto para ingresar el ID del usuario
 
-        if not cliente_id.isdigit():  # Verificar que el ID ingresado sea válido
-            QMessageBox.warning(self, "Error", "El ID ingresado no es válido.")
+        if not email_cliente:  # Verificar el email del cliente
+            QMessageBox.warning(self, "Error", "Campo obligatorio.")
             return
 
         bd = BD_clientes()
-        exito, msg = bd.eliminar_cliente(int(cliente_id))
+        exito, msg = bd.eliminar_cliente(email_cliente)
 
         if exito:
             QMessageBox.information(self, "Éxito", msg)
@@ -143,8 +151,6 @@ class VentanaClientes(QMainWindow):
 
 
 if __name__ == "__main__":
-    # se ejecuta la función para crear las tablas
-    ejecutar_sql()
     # se crea la instancia de la aplicación
     app = QApplication(sys.argv)
     # se crea la instancia de la ventana

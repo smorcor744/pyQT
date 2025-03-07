@@ -51,6 +51,28 @@ class BD_clientes():
         finally:
             conexion.close()  # Cerrar la conexión de manera segura
 
+    def buscar_cliente_por_email(self, email):
+        """Busca un cliente en la base de datos por su email."""
+        try:
+            conexion = self._conectar()
+            cursor = conexion.cursor()
+
+            # Consulta SQL para buscar el cliente por email
+            cursor.execute('''
+                SELECT id, nombre, apellido1, apellido2, email, dni
+                FROM clientes
+                WHERE email = ?''', (email,))
+
+            # Obtener el resultado
+            cliente = cursor.fetchone()
+            return cliente
+            
+        except Exception as e:
+            print(f"Error al obtener el cliente: {e}")
+            return []
+        finally:
+            conexion.close()  # Cerrar la conexión de manera segura
+
     def eliminar_cliente(self, email):
         """Elimina un usuario de la base de datos mediante su ID."""
         try:

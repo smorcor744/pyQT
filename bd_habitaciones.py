@@ -26,7 +26,7 @@ class BD_habitaciones():
             return True, "Habitación registrado correctamente."
 
         except sqlite3.IntegrityError:
-            return (False, "El DNI o email ya está registrado.")
+            return (False, "La habitación ya está registrado.")
         except Exception as e:
             return (False, f"Error al registrar la habitación: {e}")
         finally:
@@ -34,7 +34,7 @@ class BD_habitaciones():
 
         
     def obtener_habitacion(self):
-        """Obtiene todas las habitaciones registradass en la base de datos."""
+        """Obtiene todas las habitaciones registradas en la base de datos."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
@@ -63,9 +63,9 @@ class BD_habitaciones():
 
             # Verificar si el usuario fue eliminado
             if cursor.rowcount > 0:
-                return True, "Habitacion eliminada correctamente."
+                return True, "Habitación eliminada correctamente."
             else:
-                return False, "No se encontró una habitación con ese ID."
+                return False, "No se encontró una habitación con ese número."
 
         except Exception as e:
             return False, f"Error al eliminar la habitación: {e}"
@@ -74,7 +74,7 @@ class BD_habitaciones():
 
 
     def actualizar_habitacion(self, numero, disponible):
-        """Actualiza los datos de un usuario en la base de datos mediante su ID."""
+        """Actualiza los datos de una habitación en la base de datos mediante su NÚMERO."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
@@ -94,7 +94,7 @@ class BD_habitaciones():
             if cursor.rowcount > 0:
                 return True, "Habitación actualizada correctamente."
             else:
-                return False, "No se encontró una habitación con ese ID."
+                return False, "No se encontró una habitación con ese NÚMERO."
 
         except Exception as e:
             return False, f"Error al actualizar la habitación: {e}"

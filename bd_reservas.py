@@ -69,14 +69,14 @@ class BD_reservas():
         finally:
             conexion.close()  # Cerrar la conexión de manera segura
 
-    def eliminar_reserva(self, email_cliente):
+    def eliminar_reserva(self, id):
         """Elimina una reserva de la base de datos mediante el email del cliente."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
 
             # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM reservas WHERE email_cliente = ?", (email_cliente))
+            cursor.execute("DELETE FROM reservas WHERE id = ?", (id))
             conexion.commit()
 
             # Verificar si la reserva fue eliminada
@@ -91,8 +91,8 @@ class BD_reservas():
             conexion.close()  # Cerrar la conexión de manera segura
 
 
-    def actualizar_reserva(self, email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado):
-        """Actualiza los datos de una reserva en la base de datos mediante el email del cliente."""
+    def actualizar_reserva(self, id, email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado):
+        """Actualiza los datos de una reserva en la base de datos mediante el email del cliente y el número de habitación."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
@@ -101,7 +101,9 @@ class BD_reservas():
             cursor.execute('''
                 UPDATE reservas
                 SET email_cliente = ?, numero_habitacion = ?, fecha_checkin = ?, fecha_checkout = ?, estado = ?
-                WHERE email_cliente = ?''', (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado))
+                WHERE id = ?''',
+                (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado, id)
+            )
 
             conexion.commit()
 
