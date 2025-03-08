@@ -111,6 +111,19 @@ color: rgb(255, 0, 127);</string>
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">password {
+    background-color: black;  /* Color de fondo negro */
+    color: white;             /* Color de texto blanco para contraste */
+    padding: 10px;            /* Espaciado interno */
+    border-radius: 5px;       /* Bordes redondeados */
+    font-family: Arial, sans-serif;  /* Fuente */
+    font-size: 16px;          /* Tamaño de la fuente */
+    text-align: center;       /* Alinear el texto al centro */
+    display: inline-block;    /* Para que el label se ajuste al contenido */
+}
+</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="loginbutton">
    <property name="geometry">
