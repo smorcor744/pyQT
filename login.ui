@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Login</class>
+ <widget class="QDialog" name="Login">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -43,10 +43,10 @@
    </property>
    <property name="styleSheet">
     <string notr="true">font: 15pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 0, 127);</string>
+color: rgb(255, 223, 0);</string>
    </property>
    <property name="text">
-    <string>Username</string>
+    <string>Email</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -60,7 +60,7 @@ color: rgb(255, 0, 127);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 15pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 0, 127);</string>
+color: rgb(255, 223, 0);</string>
    </property>
    <property name="text">
     <string>Password</string>
@@ -69,16 +69,22 @@ color: rgb(255, 0, 127);</string>
   <widget class="QLineEdit" name="email">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>190</x>
      <y>180</y>
-     <width>201</width>
+     <width>231</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777203</height>
+    </size>
+   </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
-     <bold>true</bold>
+     <pointsize>12</pointsize>
+     <bold>false</bold>
      <hintingpreference>PreferNoHinting</hintingpreference>
     </font>
    </property>
@@ -87,16 +93,13 @@ color: rgb(255, 0, 127);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">email {
-    background-color: black;  /* Color de fondo negro */
-    color: white;             /* Color de texto blanco para contraste */
-    padding: 10px;            /* Espaciado interno */
-    border-radius: 5px;       /* Bordes redondeados */
-    font-family: Arial, sans-serif;  /* Fuente */
-    font-size: 16px;          /* Tamaño de la fuente */
-    text-align: center;       /* Alinear el texto al centro */
-    display: inline-block;    /* Para que el label se ajuste al contenido */
-}
-</string>
+        background-color: #ffffff;
+        max-width: 600px;  
+        margin: 20px auto; 
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+    }</string>
    </property>
    <property name="text">
     <string/>
@@ -105,11 +108,16 @@ color: rgb(255, 0, 127);</string>
   <widget class="QLineEdit" name="password">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>190</x>
      <y>280</y>
-     <width>201</width>
+     <width>231</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">password {
@@ -128,8 +136,8 @@ color: rgb(255, 0, 127);</string>
   <widget class="QPushButton" name="loginbutton">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>430</y>
+     <x>280</x>
+     <y>400</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -144,7 +152,7 @@ color: rgb(255, 0, 127);</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>190</x>
      <y>350</y>
      <width>161</width>
      <height>16</height>
@@ -160,7 +168,7 @@ color: rgb(255, 0, 127);</string>
   <widget class="QPushButton" name="createaccbutton">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>330</x>
      <y>350</y>
      <width>91</width>
      <height>21</height>
@@ -176,14 +184,22 @@ color: rgb(255, 0, 127);</string>
   <widget class="QLabel" name="invalid">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>390</y>
+     <x>190</x>
+     <y>140</y>
      <width>141</width>
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>12</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 15pt &quot;MS Shell Dlg 2&quot;;
+    <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">

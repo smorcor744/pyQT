@@ -48,11 +48,12 @@ class Login(QDialog):
 
 class CreateAcc(QDialog):
     def __init__(self):
-        super(CreateAcc, self).__init__()
+        super(CreateAcc, self).__init__() 
         loadUi("createacc.ui", self)
         self.signupbutton.clicked.connect(self.createaccfunction)
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpass.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.login.clicked.connect(self.gotologin)
         self.invalid.setVisible(False)
 
     def createaccfunction(self):
@@ -74,6 +75,11 @@ class CreateAcc(QDialog):
         except:
             self.invalid.setVisible(True)
             QMessageBox.critical(self, "Signup Error", "Failed to create account. Please try again.")
+
+    def gotologin(self):
+        login = Login()
+        widget.addWidget(login)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 app = QApplication(sys.argv)
 mainwindow = Login()
