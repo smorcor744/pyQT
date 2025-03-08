@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS reservas (
 -- Crear tabla pagos
 CREATE TABLE IF NOT EXISTS pagos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_reserva INTEGER NOT NULL,
+    id_reserva INTEGER UNIQUE NOT NULL,
     monto REAL NOT NULL,
     metodo_pago TEXT NOT NULL CHECK(metodo_pago IN ('Tarjeta', 'Efectivo')),
     fecha_pago DATE NOT NULL,
