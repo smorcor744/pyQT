@@ -1,117 +1,56 @@
 import sqlite3
 
-class BD_reservas():
+class BD_reservas:
+    def __init__(self):
+        self.conexion = sqlite3.connect('hotel.db')
+        self.cursor = self.conexion.cursor()
+        self.crear_tabla()
 
-    def __init__(self, db_name="hotel.db"):
-        self.db_name = db_name
+    def crear_tabla(self):
+        query = """
+        CREATE TABLE IF NOT EXISTS reservas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email_cliente TEXT NOT NULL,
+            numero_habitacion TEXT NOT NULL,
+            fecha_checkin TEXT NOT NULL,
+            fecha_checkout TEXT NOT NULL,
+            estado TEXT NOT NULL
+        );
+        """
+        self.cursor.execute(query)
+        self.conexion.commit()
 
-    def _conectar(self):
-        """Método privado para realizar la conexión a la base de datos."""
-        return sqlite3.connect(self.db_name)
-    
     def insertar_reserva(self, email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado):
         try:
-            conexion = self._conectar()
-            cursor = conexion.cursor()
-
-            # Insertar los datos en la base de datos
-            cursor.execute('''
-                INSERT INTO reservas (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado) 
-                VALUES (?, ?, ?, ?, ?)''',
-                (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado))
-
-            conexion.commit()
-            conexion.close()
-
+            query = "INSERT INTO reservas (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado) VALUES (?, ?, ?, ?, ?)"
+            self.cursor.execute(query, (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado))
+            self.conexion.commit()
             return True, "Reserva registrada correctamente."
+        except sqlite3.Error as e:
+            return False, f"Error al registrar reserva: {e}"
 
-        except sqlite3.IntegrityError:
-            return (False, "La habitación ya está registrada.")
-        except Exception as e:
-            return (False, f"Error al registrar la reserva: {e}")
-        finally:
-            conexion.close()  # Cerrar la conexión de manera segura
-
-        
     def obtener_reservas(self):
-        """Obtiene todos las reservas registradas en la base de datos."""
+        query = "SELECT * FROM reservas"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+
+    def eliminar_reserva(self, id_reserva):
         try:
-            conexion = self._conectar()
-            cursor = conexion.cursor()
+            query = "DELETE FROM reservas WHERE id = ?"
+            self.cursor.execute(query, (id_reserva,))
+            self.conexion.commit()
+            return True, "Reserva eliminada correctamente."
+        except sqlite3.Error as e:
+            return False, f"Error al eliminar reserva: {e}"
 
-            # Consultar todas las reservas
-            cursor.execute("SELECT * FROM reservas")
-            reservas = cursor.fetchall()  # Obtener todos los registros
-
-            return reservas  # Devolver los resultados
-
-        except Exception as e:
-            print(f"Error al obtener las reservas: {e}")
-            return []
-        finally:
-            conexion.close()  # Cerrar la conexión de manera segura
-
-    def obtener_reservas_por_email(self, email):
-        """Obtiene las reservas registradas de un cliente en la base de datos."""
+    def actualizar_reserva(self, id_reserva, email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado):
         try:
-            conexion = self._conectar()
-            cursor = conexion.cursor()
+            query = "UPDATE reservas SET email_cliente = ?, numero_habitacion = ?, fecha_checkin = ?, fecha_checkout = ?, estado = ? WHERE id = ?"
+            self.cursor.execute(query, (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado, id_reserva))
+            self.conexion.commit()
+            return True, "Reserva actualizada correctamente."
+        except sqlite3.Error as e:
+            return False, f"Error al actualizar reserva: {e}"
 
-            # Consultar todas las reservas
-            cursor.execute("SELECT * FROM reservas WHERE email_cliente = ?", (email))
-            reservas = cursor.fetchall()  # Obtener todos los registros
-
-            return reservas  # Devolver los resultados
-
-        except Exception as e:
-            print(f"Error al obtener las reservas: {e}")
-            return []
-        finally:
-            conexion.close()  # Cerrar la conexión de manera segura
-
-    def eliminar_reserva(self, email_cliente):
-        """Elimina una reserva de la base de datos mediante el email del cliente."""
-        try:
-            conexion = self._conectar()
-            cursor = conexion.cursor()
-
-            # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM reservas WHERE email_cliente = ?", (email_cliente))
-            conexion.commit()
-
-            # Verificar si la reserva fue eliminada
-            if cursor.rowcount > 0:
-                return True, "Reserva eliminada correctamente."
-            else:
-                return False, "No se encontró una reserva con ese EMAIL."
-
-        except Exception as e:
-            return False, f"Error al eliminar la reserva: {e}"
-        finally:
-            conexion.close()  # Cerrar la conexión de manera segura
-
-
-    def actualizar_reserva(self, email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado):
-        """Actualiza los datos de una reserva en la base de datos mediante el email del cliente."""
-        try:
-            conexion = self._conectar()
-            cursor = conexion.cursor()
-
-            # Actualizar los datos de la reserva
-            cursor.execute('''
-                UPDATE reservas
-                SET email_cliente = ?, numero_habitacion = ?, fecha_checkin = ?, fecha_checkout = ?, estado = ?
-                WHERE email_cliente = ?''', (email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado))
-
-            conexion.commit()
-
-            # Verificar si se actualizó algún registro
-            if cursor.rowcount > 0:
-                return True, "Reserva actualizada correctamente."
-            else:
-                return False, "No se encontró una reserva con ese EMAIL."
-
-        except Exception as e:
-            return False, f"Error al actualizar la reserva: {e}"
-        finally:
-            conexion.close()  # Cerrar la conexión de manera segura
+    def cerrar_conexion(self):
+        self.conexion.close()

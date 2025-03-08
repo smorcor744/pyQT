@@ -36,31 +36,33 @@ class VentanaHabitaciones(QMainWindow):
             }
         """)
 
+        # Conectar botones con funciones
         self.bt_registrar_habitacion.clicked.connect(self.registrar_habitacion)
         self.bt_mostrar_habitaciones.clicked.connect(self.mostrar_habitaciones)
         self.bt_eliminar_habitacion.clicked.connect(self.eliminar_habitacion)
         self.bt_actualizar_habitacion.clicked.connect(self.actualizar_habitacion)
         self.bt_atras.clicked.connect(self.ir_atras)
 
+    # 🔹 AHORA LOS MÉTODOS ESTÁN DENTRO DE LA CLASE
     def registrar_habitacion(self):
         numero = self.textNumero.text()
-        tipo = self.textTipo.text()
+        tipo = self.comboTipo.currentText()
         precio_noche = self.textprecio_noche.text()
-        disponible = self.textDisponible.text()
+        disponible = self.disponible.isChecked()
 
-        if not (numero and tipo and precio_noche and disponible):
+        if not (numero and tipo and precio_noche):
             QMessageBox.warning(self, "Error", "Todos los campos son obligatorios.")
             return
-
+        
         bd = BD_habitaciones()
         exito, msg = bd.insertar_habitacion(numero, tipo, precio_noche, disponible)
 
         if exito:
             QMessageBox.information(self, "Éxito", msg)
             self.textNumero.clear()
-            self.textTipo.clear()
+            self.comboTipo.setCurrentIndex(0)
             self.textprecio_noche.clear()
-            self.textDisponible.clear()
+            self.disponible.setChecked(False)
         else:
             QMessageBox.warning(self, "Error", msg)
 
@@ -76,6 +78,8 @@ class VentanaHabitaciones(QMainWindow):
 
             for row, habitacion in enumerate(habitaciones):
                 for col, value in enumerate(habitacion):
+                    if col == 3:
+                        value = "Sí" if value else "No"
                     self.tablahabitaciones.setItem(row, col, QTableWidgetItem(str(value)))
 
     def eliminar_habitacion(self):

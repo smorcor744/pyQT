@@ -17,7 +17,7 @@ class BD_habitaciones():
             # Insertar los datos en la base de datos
             cursor.execute('''
                 INSERT INTO habitaciones (numero, tipo, precio_noche, disponible) 
-                VALUES (?, ?, ?, ?, ?)''',
+                VALUES (?, ?, ?, ?)''',
                 (numero, tipo, precio_noche, disponible))
 
             conexion.commit()
@@ -58,7 +58,7 @@ class BD_habitaciones():
             cursor = conexion.cursor()
 
             # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM habitaciones WHERE numero = ?", (numero))
+            cursor.execute("DELETE FROM habitaciones WHERE numero = ?", (numero,))
             conexion.commit()
 
             # Verificar si el usuario fue eliminado
@@ -87,7 +87,7 @@ class BD_habitaciones():
             '''
 
             # Actualizar los datos del usuario
-            cursor.execute(query, (disponible, numero))
+            cursor.execute(query, (disponible, int(numero)))
             conexion.commit()
 
             # Verificar si se actualizó algún registro

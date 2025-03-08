@@ -6,7 +6,7 @@ import sqlite3
 from BD_reservas import BD_reservas
 
 def ejecutar_sql():
-    """Ejecuta el archivo .sql que contiene las instrucciones de creación de tablas para reservas."""
+    """Ejecuta el archivo .sql que contiene las instrucciones de creación de tablas."""
     try:
         with open("hotel.sql", "r") as archivo_sql:
             sql_script = archivo_sql.read()
@@ -25,7 +25,7 @@ class VentanaReservas(QMainWindow):
         super(VentanaReservas, self).__init__()
 
         uic.loadUi("./reservas.ui", self)
-        self.setWindowTitle("Gestión de Reservas")
+        self.setWindowTitle("Registro de Reservas")
 
         self.setStyleSheet("""
             QMainWindow {
@@ -36,32 +36,37 @@ class VentanaReservas(QMainWindow):
             }
         """)
 
+        # Conectar botones a funciones
         self.bt_registrar_reserva.clicked.connect(self.registrar_reserva)
         self.bt_mostrar_reservas.clicked.connect(self.mostrar_reservas)
         self.bt_eliminar_reservas.clicked.connect(self.eliminar_reserva)
         self.bt_actualizar_reserva.clicked.connect(self.actualizar_reserva)
-        self.bt_buscar_reserva.clicked.connect(self.buscar_reserva)
         self.bt_atras.clicked.connect(self.ir_atras)
 
-    def registrar_reserva(self):
-        email = self.textEmail.text()
-        numero_habitacion = self.textNumero.text()
-        checkin = self.checkIn.date().toString("yyyy-MM-dd")
-        checkout = self.checkOut.date().toString("yyyy-MM-dd")
-        estado = self.textDisponible.text()
+        # Agregar opciones al QComboBox de estado
+        self.comboEstado.addItems(["Pendiente", "Confirmada", "Cancelada", "Finalizada"])
 
-        if not (email and numero_habitacion and checkin and checkout and estado):
+    def registrar_reserva(self):
+        email_cliente = self.textEmail.text()
+        numero_habitacion = self.textNumero_habitacion.text()
+        fecha_checkin = self.checkIn.text()
+        fecha_checkout = self.checkOut.text()
+        estado = self.comboEstado.currentText()  # Obtiene el estado seleccionado
+
+        if not (email_cliente and numero_habitacion and fecha_checkin and fecha_checkout):
             QMessageBox.warning(self, "Error", "Todos los campos son obligatorios.")
             return
 
         bd = BD_reservas()
-        exito, msg = bd.insertar_reserva(email, numero_habitacion, checkin, checkout, estado)
+        exito, msg = bd.insertar_reserva(email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado)
 
         if exito:
             QMessageBox.information(self, "Éxito", msg)
             self.textEmail.clear()
-            self.textNumero.clear()
-            self.textDisponible.clear()
+            self.textNumero_habitacion.clear()
+            self.textFechaCheckin.clear()
+            self.textFechaCheckout.clear()
+            self.comboEstado.setCurrentIndex(0)  # Reiniciar selección
         else:
             QMessageBox.warning(self, "Error", msg)
 
@@ -73,21 +78,21 @@ class VentanaReservas(QMainWindow):
         else:
             self.tablaReservas.setRowCount(len(reservas))
             self.tablaReservas.setColumnCount(5)
-            self.tablaReservas.setHorizontalHeaderLabels(["ID", "Email", "Habitación", "Check-in", "Check-out", "Estado"])
+            self.tablaReservas.setHorizontalHeaderLabels(["ID", "Email Cliente", "N° Habitación", "Check-in", "Check-out", "Estado"])
 
             for row, reserva in enumerate(reservas):
                 for col, value in enumerate(reserva):
                     self.tablaReservas.setItem(row, col, QTableWidgetItem(str(value)))
 
     def eliminar_reserva(self):
-        email = self.textIdDelete.text()
+        email_cliente = self.textEmailDelete.text()
 
-        if not email:
+        if not email_cliente:
             QMessageBox.warning(self, "Error", "Debe ingresar un email válido.")
             return
 
         bd = BD_reservas()
-        exito, msg = bd.eliminar_reserva(email)
+        exito, msg = bd.eliminar_reserva(email_cliente)
 
         if exito:
             QMessageBox.information(self, "Éxito", msg)
@@ -95,47 +100,27 @@ class VentanaReservas(QMainWindow):
         else:
             QMessageBox.warning(self, "Error", msg)
 
-        self.textIdDelete.clear()
+        self.textEmailDelete.clear()
 
     def actualizar_reserva(self):
-        email = self.textUserID.text()
-        numero_habitacion = self.textNumero.text()
-        checkin = self.checkIn.date().toString("yyyy-MM-dd")
-        checkout = self.checkOut.date().toString("yyyy-MM-dd")
-        estado = self.textDisponible.text()
+        email_cliente = self.textEmailUpdate.text()
+        numero_habitacion = self.textHabitacionUpdate.text()
+        fecha_checkin = self.textFechaCheckinUpdate.text()
+        fecha_checkout = self.textFechaCheckoutUpdate.text()
+        estado = self.comboEstado.currentText()  # Obtiene el estado actualizado
 
-        if not (email and numero_habitacion and checkin and checkout and estado):
+        if not (email_cliente and numero_habitacion and fecha_checkin and fecha_checkout):
             QMessageBox.warning(self, "Error", "Todos los campos son obligatorios.")
             return
 
         bd = BD_reservas()
-        exito, msg = bd.actualizar_reserva(email, numero_habitacion, checkin, checkout, estado)
+        exito, msg = bd.actualizar_reserva(email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado)
 
         if exito:
             QMessageBox.information(self, "Éxito", msg)
             self.mostrar_reservas()
         else:
             QMessageBox.warning(self, "Error", msg)
-
-    def buscar_reserva(self):
-        email = self.textIdBuscar.text()
-
-        if not email:
-            QMessageBox.warning(self, "Error", "Debe ingresar un email válido.")
-            return
-
-        reservas = BD_reservas().obtener_reservas_por_email(email)
-
-        if len(reservas) == 0:
-            QMessageBox.warning(self, "Advertencia", "No se encontraron reservas con ese email.")
-        else:
-            self.tablaReservas.setRowCount(len(reservas))
-            self.tablaReservas.setColumnCount(5)
-            self.tablaReservas.setHorizontalHeaderLabels(["ID", "Email", "Habitación", "Check-in", "Check-out", "Estado"])
-
-            for row, reserva in enumerate(reservas):
-                for col, value in enumerate(reserva):
-                    self.tablaReservas.setItem(row, col, QTableWidgetItem(str(value)))
 
     def ir_atras(self):
         from window_main import VentanaPrincipal

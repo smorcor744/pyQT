@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDateEdit, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QTableWidget, QTableWidgetItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QHeaderView,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QTableWidget, QTableWidgetItem, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(140, 10, 71, 41))
+        self.label.setGeometry(QRect(150, 0, 71, 41))
         font = QFont()
         font.setPointSize(14)
         self.label.setFont(font)
@@ -45,7 +45,7 @@ class Ui_MainWindow(object):
         self.label_4.setGeometry(QRect(70, 240, 91, 16))
         self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(70, 30, 71, 16))
+        self.label_5.setGeometry(QRect(70, 40, 71, 16))
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(70, 310, 71, 16))
@@ -53,15 +53,12 @@ class Ui_MainWindow(object):
         self.bt_registrar_reserva.setObjectName(u"bt_registrar_reserva")
         self.bt_registrar_reserva.setGeometry(QRect(130, 420, 75, 24))
         self.bt_registrar_reserva.setStyleSheet(u"background-color: rgb(0, 85, 0);")
-        self.textNumero = QLineEdit(self.centralwidget)
-        self.textNumero.setObjectName(u"textNumero")
-        self.textNumero.setGeometry(QRect(70, 125, 241, 31))
-        self.textDisponible = QLineEdit(self.centralwidget)
-        self.textDisponible.setObjectName(u"textDisponible")
-        self.textDisponible.setGeometry(QRect(70, 330, 241, 31))
+        self.textNumero_habitacion = QLineEdit(self.centralwidget)
+        self.textNumero_habitacion.setObjectName(u"textNumero_habitacion")
+        self.textNumero_habitacion.setGeometry(QRect(70, 125, 241, 31))
         self.textEmail = QLineEdit(self.centralwidget)
         self.textEmail.setObjectName(u"textEmail")
-        self.textEmail.setGeometry(QRect(70, 50, 241, 31))
+        self.textEmail.setGeometry(QRect(70, 60, 241, 31))
         self.bt_mostrar_reservas = QPushButton(self.centralwidget)
         self.bt_mostrar_reservas.setObjectName(u"bt_mostrar_reservas")
         self.bt_mostrar_reservas.setGeometry(QRect(630, 510, 121, 31))
@@ -108,9 +105,20 @@ class Ui_MainWindow(object):
         self.checkIn = QDateEdit(self.centralwidget)
         self.checkIn.setObjectName(u"checkIn")
         self.checkIn.setGeometry(QRect(70, 200, 241, 31))
+        self.checkIn.setMaximumDateTime(QDateTime(QDate(2035, 12, 31), QTime(22, 59, 59)))
+        self.checkIn.setMinimumDateTime(QDateTime(QDate(2025, 3, 15), QTime(0, 0, 0)))
         self.checkOut = QDateEdit(self.centralwidget)
         self.checkOut.setObjectName(u"checkOut")
         self.checkOut.setGeometry(QRect(70, 270, 241, 31))
+        self.checkOut.setMaximumDateTime(QDateTime(QDate(2035, 12, 31), QTime(22, 59, 59)))
+        self.checkOut.setMinimumDateTime(QDateTime(QDate(2025, 3, 15), QTime(0, 0, 0)))
+        self.comboEstado = QComboBox(self.centralwidget)
+        self.comboEstado.addItem("")
+        self.comboEstado.addItem("")
+        self.comboEstado.addItem("")
+        self.comboEstado.addItem("")
+        self.comboEstado.setObjectName(u"comboEstado")
+        self.comboEstado.setGeometry(QRect(70, 340, 81, 22))
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -136,5 +144,10 @@ class Ui_MainWindow(object):
         self.textIdBuscar.setText("")
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Introduce email del cliente", None))
         self.bt_buscar_reserva.setText(QCoreApplication.translate("MainWindow", u"Buscar", None))
+        self.comboEstado.setItemText(0, QCoreApplication.translate("MainWindow", u"Pendiente", None))
+        self.comboEstado.setItemText(1, QCoreApplication.translate("MainWindow", u"Confirmada", None))
+        self.comboEstado.setItemText(2, QCoreApplication.translate("MainWindow", u"Cancelada", None))
+        self.comboEstado.setItemText(3, QCoreApplication.translate("MainWindow", u"Finalizada", None))
+
     # retranslateUi
 

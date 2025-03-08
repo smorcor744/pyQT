@@ -26,9 +26,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>0</y>
-      <width>71</width>
+      <x>140</x>
+      <y>70</y>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
@@ -38,75 +38,49 @@
      </font>
     </property>
     <property name="text">
-     <string>Reservas</string>
+     <string>Pagos</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>100</y>
-      <width>111</width>
+      <x>50</x>
+      <y>170</y>
+      <width>51</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Numero habitacion</string>
+     <string>idReserva</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>170</y>
-      <width>81</width>
+      <x>50</x>
+      <y>300</y>
+      <width>101</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fecha checkin</string>
+     <string>metodo de pago</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>240</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>fecha_checkout</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>40</y>
+      <x>50</x>
+      <y>230</y>
       <width>71</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Email</string>
+     <string>monto</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>310</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Estado</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bt_registrar_reserva">
+   <widget class="QPushButton" name="bt_registrar_pago">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -122,27 +96,27 @@
      <string>Registrar</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="textNumero_habitacion">
+   <widget class="QLineEdit" name="textIdReserva">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>125</y>
+      <x>50</x>
+      <y>195</y>
       <width>241</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="textEmail">
+   <widget class="QLineEdit" name="textMonto">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>60</y>
+      <x>50</x>
+      <y>250</y>
       <width>241</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_mostrar_reservas">
+   <widget class="QPushButton" name="bt_mostrar_pagos">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -155,10 +129,10 @@
      <string notr="true">background-color: rgb(0, 85, 255);</string>
     </property>
     <property name="text">
-     <string>Mostrar Reservas</string>
+     <string>Mostrar pagos</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tablaReservas">
+   <widget class="QTableWidget" name="tablaPagos">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -191,10 +165,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce el id del pago</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_eliminar_reservas">
+   <widget class="QPushButton" name="bt_eliminar_pago">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -210,7 +184,7 @@
      <string>Eliminar</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_actualizar_reserva">
+   <widget class="QPushButton" name="bt_actualizar_pago">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -288,10 +262,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce el id del pago</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bt_buscar_reserva">
+   <widget class="QPushButton" name="bt_buscar_pago">
     <property name="geometry">
      <rect>
       <x>840</x>
@@ -307,97 +281,28 @@
      <string>Buscar</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="checkIn">
+   <widget class="QComboBox" name="comboMetodo_pago">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>200</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="maximumDateTime">
-     <datetime>
-      <hour>22</hour>
-      <minute>59</minute>
-      <second>59</second>
-      <year>2035</year>
-      <month>12</month>
-      <day>31</day>
-     </datetime>
-    </property>
-    <property name="minimumDateTime">
-     <datetime>
-      <hour>0</hour>
-      <minute>0</minute>
-      <second>0</second>
-      <year>2025</year>
-      <month>3</month>
-      <day>15</day>
-     </datetime>
-    </property>
-   </widget>
-   <widget class="QDateEdit" name="checkOut">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>270</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="maximumDateTime">
-     <datetime>
-      <hour>22</hour>
-      <minute>59</minute>
-      <second>59</second>
-      <year>2035</year>
-      <month>12</month>
-      <day>31</day>
-     </datetime>
-    </property>
-    <property name="minimumDateTime">
-     <datetime>
-      <hour>0</hour>
-      <minute>0</minute>
-      <second>0</second>
-      <year>2025</year>
-      <month>3</month>
-      <day>15</day>
-     </datetime>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboEstado">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>340</y>
+      <x>50</x>
+      <y>330</y>
       <width>81</width>
       <height>22</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Pendiente</string>
+      <string>Tarjeta</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Confirmada</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cancelada</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Finalizada</string>
+      <string>Efectivo</string>
      </property>
     </item>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
