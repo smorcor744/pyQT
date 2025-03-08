@@ -9,16 +9,16 @@ class BD_pagos():
         """Método privado para realizar la conexión a la base de datos."""
         return sqlite3.connect(self.db_name)
     
-    def insertar_pago(self, id, id_reserva, monto, metodo_pago, fecha_pago):
+    def insertar_pago(self, id_reserva, monto, metodo_pago, fecha_pago):
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
 
             # Insertar los datos en la base de datos
             cursor.execute('''
-                INSERT INTO pagos (id, id_reserva, monto, metodo_pago, fecha_pago) 
+                INSERT INTO pagos (id_reserva, monto, metodo_pago, fecha_pago) 
                 VALUES (?, ?, ?, ?, ?)''',
-                (id, id_reserva, monto, metodo_pago, fecha_pago))
+                (id_reserva, monto, metodo_pago, fecha_pago))
 
             conexion.commit()
             conexion.close()
