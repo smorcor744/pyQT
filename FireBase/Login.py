@@ -43,14 +43,12 @@ class Login(QMainWindow):
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             QMessageBox.information(self, "Success", f"Welcome {user['email']}!")
-            try:
-                from principal.window_main import VentanaPrincipal
-                self.window_main = VentanaPrincipal()
-                self.window_main.show()
-                self.hide()
-            except Exception as e:
-                print(e)
-                QMessageBox.critical(self, "Login Error", "No se hha podido acceder al menú principal.")
+            
+            from principal.window_main import VentanaPrincipal
+            self.window_main = VentanaPrincipal()
+            self.window_main.show()
+            self.hide()
+            
         except:
             self.invalid.setVisible(True)
             QMessageBox.critical(self, "Login Error", "Invalid email or password. Please try again.")
