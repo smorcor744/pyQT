@@ -8,7 +8,7 @@ class VentanaHabitaciones(QMainWindow):
     def __init__(self):
         super(VentanaHabitaciones, self).__init__()
 
-        uic.loadUi("./habitacion/habitacion.ui", self)
+        uic.loadUi("./habitacion/habitaciones.ui", self)
         self.setWindowTitle("Registro de Habitaciones")
 
         self.setStyleSheet("""
