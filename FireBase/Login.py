@@ -13,12 +13,6 @@ class Login(QMainWindow):
                 background-position: center;
                 background-repeat: no-repeat;
             }
-        """)        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
-                background-position: center;
-                background-repeat: no-repeat;
-            }
         """)
         self.loginbutton.clicked.connect(self.loginfunction)
         self.password.setEchoMode(2)
