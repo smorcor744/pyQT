@@ -113,13 +113,14 @@ class VentanaReservas(QMainWindow):
         fecha_checkin = self.textFechaCheckinUpdate.text()
         fecha_checkout = self.textFechaCheckoutUpdate.text()
         estado = self.comboEstado.currentText()  # Obtiene el estado actualizado
+        id = self.textUserID.text()
 
         if not (email_cliente and numero_habitacion and fecha_checkin and fecha_checkout):
             QMessageBox.warning(self, "Error", "Todos los campos son obligatorios.")
             return
 
         bd = BD_reservas()
-        exito, msg = bd.actualizar_reserva(email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado)
+        exito, msg = bd.actualizar_reserva(email_cliente, numero_habitacion, fecha_checkin, fecha_checkout, estado, id)
 
         if exito:
             QMessageBox.information(self, "Éxito", msg)
