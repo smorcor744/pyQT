@@ -1,4 +1,4 @@
-
+import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
@@ -9,16 +9,21 @@ class VentanaClientes(QMainWindow):
     def __init__(self):
         super(VentanaClientes, self).__init__()
 
-        ui_file = os.path.join(os.path.dirname(__file__), "cliente/registro_user.ui")
+        # Obtener la ruta correcta al archivo .ui
+        ui_file = self.get_ui_path("cliente/registro_user.ui")
+
+        # Cargar el archivo .ui
         uic.loadUi(ui_file, self)
+        # Obtener la ruta correcta a la imagen de fondo
+        fondo_path = self.get_ui_path("fondo.jpg")
 
         # Establecer la imagen de fondo usando CSS
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url({fondo_path});
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
 
         self.bt_registrar_cliente.clicked.connect(self.registrar_cliente)
@@ -27,6 +32,21 @@ class VentanaClientes(QMainWindow):
         self.bt_eliminar_cliente.clicked.connect(self.eliminar_cliente)
         self.bt_actualizar_cliente.clicked.connect(self.actualizar_cliente)
         self.bt_atras.clicked.connect(self.ir_atras)
+
+    def get_ui_path(self, relative_path):
+        """
+        Obtiene la ruta absoluta al archivo .ui, teniendo en cuenta si el programa
+        está empaquetado con PyInstaller o no.
+        """
+        if getattr(sys, 'frozen', False):
+            # Si está empaquetado con PyInstaller
+            base_dir = sys._MEIPASS
+        else:
+            # Si se está ejecutando desde el código fuente
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Construir la ruta completa al archivo .ui
+        return os.path.join(base_dir, relative_path)
 
     def registrar_cliente(self):
         nombre = self.textNombre.text()

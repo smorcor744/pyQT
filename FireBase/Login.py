@@ -24,23 +24,45 @@ def ejecutar_sql():
 class Login(QMainWindow):
     def __init__(self):
         super().__init__()
-        ui_file = os.path.join(os.path.dirname(__file__), "FireBase/ui/login.ui")
+
+        # Obtener la ruta correcta al archivo .ui
+        ui_file = self.get_ui_path("FireBase/ui/login.ui")
+
+        # Cargar el archivo .ui
         loadUi(ui_file, self)
 
-        os.path.join(os.path.dirname(__file__), "login.ui")
+        # Obtener la ruta correcta a la imagen de fondo
+        fondo_path = self.get_ui_path("fondo.jpg")
 
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url({fondo_path});
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
+        
         self.loginbutton.clicked.connect(self.loginfunction)
 
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.createaccbutton.clicked.connect(self.gotocreate)
+
+    def get_ui_path(self, relative_path):
+        """
+        Obtiene la ruta absoluta al archivo .ui, teniendo en cuenta si el programa
+        está empaquetado con PyInstaller o no.
+        """
+        if getattr(sys, 'frozen', False):
+            # Si está empaquetado con PyInstaller
+            base_dir = sys._MEIPASS
+        else:
+            # Si se está ejecutando desde el código fuente
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Construir la ruta completa al archivo .ui
+        return os.path.join(base_dir, relative_path)
 
     def loginfunction(self):
         email = self.email.text()

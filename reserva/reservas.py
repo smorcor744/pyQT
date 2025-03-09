@@ -3,20 +3,28 @@ from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_reservas import BD_reservas
 import os
+import sys
 
 class VentanaReservas(QMainWindow):
     def __init__(self):
         super(VentanaReservas, self).__init__()
 
-        ui_file = os.path.join(os.path.dirname(__file__), "reserva/reservas.ui")
+        # Obtener la ruta correcta al archivo .ui
+        ui_file = self.get_ui_path("reserva/reservas.ui")
+
+        # Cargar el archivo .ui
         uic.loadUi(ui_file, self)
 
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        # Obtener la ruta correcta a la imagen de fondo
+        fondo_path = self.get_ui_path("fondo.jpg")
+
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url({fondo_path});
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
 
         # Conectar botones a funciones
@@ -29,6 +37,21 @@ class VentanaReservas(QMainWindow):
 
         # Agregar opciones al QComboBox de estado
         self.comboEstado.addItems(["Pendiente", "Confirmada", "Cancelada", "Finalizada"])
+
+    def get_ui_path(self, relative_path):
+        """
+        Obtiene la ruta absoluta al archivo .ui, teniendo en cuenta si el programa
+        está empaquetado con PyInstaller o no.
+        """
+        if getattr(sys, 'frozen', False):
+            # Si está empaquetado con PyInstaller
+            base_dir = sys._MEIPASS
+        else:
+            # Si se está ejecutando desde el código fuente
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Construir la ruta completa al archivo .ui
+        return os.path.join(base_dir, relative_path)
 
     def registrar_reserva(self):
         email_cliente = self.textEmail.text()
