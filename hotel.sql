@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS habitaciones (
     numero TEXT UNIQUE NOT NULL,
     tipo TEXT NOT NULL CHECK(tipo IN ('Individual', 'Doble')),
     precio_noche REAL NOT NULL,
-    disponible BOOLEAN DEFAULT TRUE
+    disponible INTEGER DEFAULT TRUE
 );
 
 -- Crear tabla reservas
