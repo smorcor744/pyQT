@@ -24,51 +24,28 @@ def ejecutar_sql():
 class Login(QMainWindow):
     def __init__(self):
         super().__init__()
+        loadUi("FireBase/ui/login.ui", self)
 
-        # Obtener la ruta correcta al archivo .ui
-        ui_file = self.get_ui_path("FireBase/ui/login.ui")
-
-        # Cargar el archivo .ui
-        loadUi(ui_file, self)
-
-        # Obtener la ruta correcta a la imagen de fondo
-        fondo_path = self.get_ui_path("fondo.jpg")
-
-        # Establecer la imagen de fondo usando CSS
-        self.setStyleSheet(f"""
-            QMainWindow {{
-                background-image: url({fondo_path});
+        os.path.join(os.path.dirname(__file__), "login.ui")
+        
+        self.setStyleSheet("""
+            QMainWindow {
+                background-image: url(fondo.jpg);
                 background-position: center;
                 background-repeat: no-repeat;
-            }}
+            }
         """)
-
         self.loginbutton.clicked.connect(self.loginfunction)
 
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.createaccbutton.clicked.connect(self.gotocreate)
 
-    def get_ui_path(self, relative_path):
-        """
-        Obtiene la ruta absoluta al archivo .ui, teniendo en cuenta si el programa
-        está empaquetado con PyInstaller o no.
-        """
-        if getattr(sys, 'frozen', False):
-            # Si está empaquetado con PyInstaller
-            base_dir = sys._MEIPASS
-        else:
-            # Si se está ejecutando desde el código fuente
-            base_dir = os.path.dirname(os.path.abspath(__file__))
-
-        # Construir la ruta completa al archivo .ui
-        return os.path.join(base_dir, relative_path)
-
     def loginfunction(self):
         email = self.email.text()
         password = self.password.text()
-        #email = "123456@gmail.com"
-        #password = "123456"
+        email = "123456@gmail.com"
+        password = "123456"
 
         if not email or not password:
             QMessageBox.warning(self, "Input Error", "Please enter both email and password.")
@@ -139,7 +116,9 @@ class CreateAcc(QMainWindow):
         self.login.show()
         self.close()  # Cierra la ventana actual de creación de cuenta
 
+
 if __name__ == "__main__":
+
     ejecutar_sql()
     # Crear la aplicación
     app = QApplication(sys.argv)

@@ -2,29 +2,20 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_habitaciones import BD_habitaciones
-import os
-import sys
 
 class VentanaHabitaciones(QMainWindow):
     def __init__(self):
         super(VentanaHabitaciones, self).__init__()
 
-        # Obtener la ruta correcta al archivo .ui
-        ui_file = self.get_ui_path("habitacion/habitaciones.ui")
+        uic.loadUi("./habitacion/habitaciones.ui", self)
+        self.setWindowTitle("Registro de Habitaciones")
 
-        # Cargar el archivo .ui
-        uic.loadUi(ui_file, self)
-
-        # Obtener la ruta correcta a la imagen de fondo
-        fondo_path = self.get_ui_path("fondo.jpg")
-
-        # Establecer la imagen de fondo usando CSS
-        self.setStyleSheet(f"""
-            QMainWindow {{
-                background-image: url({fondo_path});
+        self.setStyleSheet("""
+            QMainWindow {
+                background-image: url(fondo.jpg);
                 background-position: center;
                 background-repeat: no-repeat;
-            }}
+            }
         """)
 
         # Conectar botones con funciones
@@ -34,21 +25,6 @@ class VentanaHabitaciones(QMainWindow):
         self.bt_eliminar_habitacion.clicked.connect(self.eliminar_habitacion)
         self.bt_actualizar_habitacion.clicked.connect(self.actualizar_habitacion)
         self.bt_atras.clicked.connect(self.ir_atras)
-
-    def get_ui_path(self, relative_path):
-        """
-        Obtiene la ruta absoluta al archivo .ui, teniendo en cuenta si el programa
-        está empaquetado con PyInstaller o no.
-        """
-        if getattr(sys, 'frozen', False):
-            # Si está empaquetado con PyInstaller
-            base_dir = sys._MEIPASS
-        else:
-            # Si se está ejecutando desde el código fuente
-            base_dir = os.path.dirname(os.path.abspath(__file__))
-
-        # Construir la ruta completa al archivo .ui
-        return os.path.join(base_dir, relative_path)
 
     def registrar_habitacion(self):
         numero = self.textNumero.text()
@@ -101,15 +77,15 @@ class VentanaHabitaciones(QMainWindow):
             QMessageBox.warning(self, "Advertencia", "No se encontró una habitación con ese número.")
         else:
             # Crear una tabla para mostrar los usuarios
-            self.tablahabitaciones.setRowCount(1)  # Número de filas
-            self.tablahabitaciones.setColumnCount(6)  # 6 columnas: id, nombre, apellido1, apellido2, dni, email
+            self.tablaHabitaciones.setRowCount(1)  # Número de filas
+            self.tablaHabitaciones.setColumnCount(6)  # 6 columnas: id, nombre, apellido1, apellido2, dni, email
 
             # Configurar los encabezados de las columnas
-            self.tablahabitaciones.setHorizontalHeaderLabels(["ID, Número", "Precio por Noche","Tipo" , "Disponible"])
+            self.tablaHabitaciones.setHorizontalHeaderLabels(["ID, Número", "Precio por Noche","Tipo" , "Disponible"])
 
             # Llenar la tabla con los datos de los usuarios
             for col, value in enumerate(habitacion):
-                self.tablahabitaciones.setItem(0, col, QTableWidgetItem(str(value)))
+                self.tablaHabitaciones.setItem(0, col, QTableWidgetItem(str(value)))
 
 
     def eliminar_habitacion(self):
