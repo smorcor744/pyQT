@@ -3,14 +3,15 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_empleados import BD_empleados  # Importa la clase BD_empleados
-
+import os
 
 class VentanaEmpleados(QMainWindow):
     def __init__(self):
         super(VentanaEmpleados, self).__init__()
 
-        uic.loadUi("./empleado/ventana_empleado.ui", self)  # Cargar la interfaz de empleados
-        self.setWindowTitle("Registro Empleados")
+        ui_file = os.path.join(os.path.dirname(__file__), "mpleado/ventana_empleado.ui")
+        uic.loadUi(ui_file, self)
+
 
         # Establecer la imagen de fondo usando CSS
         self.setStyleSheet("""

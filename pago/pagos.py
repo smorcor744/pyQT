@@ -2,14 +2,15 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_pagos import BD_pagos
+import os
 
 
 class VentanaPagos(QMainWindow):
     def __init__(self):
         super(VentanaPagos, self).__init__()
 
-        uic.loadUi("./pago/pagos.ui", self)
-        self.setWindowTitle("Registro de Pagos")
+        ui_file = os.path.join(os.path.dirname(__file__), "pago/pagos.ui")
+        uic.loadUi(ui_file, self)
 
         self.setStyleSheet("""
             QMainWindow {

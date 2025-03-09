@@ -2,13 +2,14 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_reservas import BD_reservas
+import os
 
 class VentanaReservas(QMainWindow):
     def __init__(self):
         super(VentanaReservas, self).__init__()
 
-        uic.loadUi("./reserva/reservas.ui", self)
-        self.setWindowTitle("Registro de Reservas")
+        ui_file = os.path.join(os.path.dirname(__file__), "reserva/reservas.ui")
+        uic.loadUi(ui_file, self)
 
         self.setStyleSheet("""
             QMainWindow {

@@ -2,13 +2,14 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_habitaciones import BD_habitaciones
+import os
 
 class VentanaHabitaciones(QMainWindow):
     def __init__(self):
         super(VentanaHabitaciones, self).__init__()
 
-        uic.loadUi("./habitacion/habitaciones.ui", self)
-        self.setWindowTitle("Registro de Habitaciones")
+        ui_file = os.path.join(os.path.dirname(__file__), "habitacion/habitaciones.ui")
+        uic.loadUi(ui_file, self)
 
         self.setStyleSheet("""
             QMainWindow {
