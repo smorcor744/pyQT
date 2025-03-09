@@ -75,31 +75,6 @@ color: rgb(255, 255, 255);</string>
      <string>Don't have an account? </string>
     </property>
    </widget>
-   <widget class="QLabel" name="invalid">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>130</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>MS Shell Dlg 2</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
-color: rgb(255, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>Invalid email</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
