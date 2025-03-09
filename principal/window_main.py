@@ -2,12 +2,14 @@ import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
+import os
 
 class VentanaPrincipal(QMainWindow):
     def __init__(self):
         super(VentanaPrincipal, self).__init__()
-        uic.loadUi("./principal/ventana_principal.ui",self)
-        self.setWindowTitle("Bienvenido a OMAHA")
+
+        ui_file = os.path.join(os.path.dirname(__file__), "principal/ventana_principal.ui")
+        uic.loadUi(ui_file, self)
 
         # Establecer la imagen de fondo usando CSS
         self.setStyleSheet("""
@@ -66,3 +68,13 @@ class VentanaPrincipal(QMainWindow):
         self.Login = Login()
         self.Login.show()
         self.hide()
+
+if __name__ == "__main__":
+    
+
+    app = QApplication(sys.argv)  # Esto debe ir al principio, antes de crear cualquier ventana
+
+    login_window = VentanaPrincipal()  # Aquí instanciamos Login
+    login_window.show()
+
+    sys.exit(app.exec())  # Ejecuta la aplicación y entra al bucle de eventos

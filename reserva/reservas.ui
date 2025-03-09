@@ -307,7 +307,7 @@
      <string>Buscar</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="checkIn">
+   <widget class="QDateEdit" name="textFechaCheckin">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -337,7 +337,7 @@
      </datetime>
     </property>
    </widget>
-   <widget class="QDateEdit" name="checkOut">
+   <widget class="QDateEdit" name="textFechaCheckout">
     <property name="geometry">
      <rect>
       <x>70</x>

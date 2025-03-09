@@ -3,13 +3,14 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_clientes import BD_clientes
+import os
 
 class VentanaClientes(QMainWindow):
     def __init__(self):
         super(VentanaClientes, self).__init__()
 
-        uic.loadUi("./cliente/registro_user.ui",self)
-        self.setWindowTitle("Registro Cliente")
+        ui_file = os.path.join(os.path.dirname(__file__), "cliente/registro_user.ui")
+        uic.loadUi(ui_file, self)
 
         # Establecer la imagen de fondo usando CSS
         self.setStyleSheet("""

@@ -4,6 +4,7 @@ from PyQt6.uic import loadUi
 from firebase_config import auth
 from PyQt6.QtWidgets import QLineEdit
 import sqlite3
+import os
 
 def ejecutar_sql():
     """Ejecuta el archivo .sql que contiene las instrucciones de creación de tablas."""
@@ -23,7 +24,11 @@ def ejecutar_sql():
 class Login(QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi("FireBase/ui/login.ui", self)
+        ui_file = os.path.join(os.path.dirname(__file__), "FireBase/ui/login.ui")
+        loadUi(ui_file, self)
+
+        os.path.join(os.path.dirname(__file__), "login.ui")
+
         self.setStyleSheet("""
             QMainWindow {
                 background-image: url(fondo.jpg);
@@ -111,13 +116,3 @@ class CreateAcc(QMainWindow):
         self.login = Login()  # Reusamos Login aquí
         self.login.show()
         self.close()  # Cierra la ventana actual de creación de cuenta
-
-if __name__ == "__main__":
-    ejecutar_sql()
-
-    app = QApplication(sys.argv)  # Esto debe ir al principio, antes de crear cualquier ventana
-
-    login_window = Login()  # Aquí instanciamos Login
-    login_window.show()
-
-    sys.exit(app.exec())  # Ejecuta la aplicación y entra al bucle de eventos
