@@ -275,7 +275,7 @@
      <iconset theme="go-previous"/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="textIdBuscar">
+   <widget class="QLineEdit" name="text_buscar_numero">
     <property name="geometry">
      <rect>
       <x>790</x>
@@ -288,17 +288,17 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLabel" name="text_numero_habitacion">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>790</x>
       <y>540</y>
-      <width>141</width>
+      <width>171</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce número de habitación</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_buscar_habitacion">

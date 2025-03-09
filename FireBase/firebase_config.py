@@ -2,7 +2,7 @@ import sys
 import pyrebase
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
-from PyQt5.uic import loadUi
+from PyQt5.uic import uic
 
 firebaseConfig = {
     "apiKey": "AIzaSyChX3dYojSJAh5cQGuTw8rdBdGdcT23zlE",
@@ -21,7 +21,7 @@ auth = firebase.auth()
 class Login(QDialog):
     def __init__(self):
         super(Login, self).__init__()
-        loadUi("login.ui", self)
+        uic.loadUi("./Firebase/login.ui", self)
         self.loginbutton.clicked.connect(self.loginfunction)
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.createaccbutton.clicked.connect(self.gotocreate)
@@ -37,6 +37,10 @@ class Login(QDialog):
             user = auth.sign_in_with_email_and_password(email, password)
             QMessageBox.information(self, "Success", f"Welcome {user['email']}!")
             # Aquí puedes redirigir al usuario a la ventana principal del hotel
+            from principal.window_main import VentanaPrincipal
+            self.ventana_empleado = VentanaPrincipal()
+            self.ventana_empleado.show()
+            self.hide()
         except:
             self.invalid.setVisible(True)
             QMessageBox.critical(self, "Login Error", "Invalid email or password. Please try again.")
@@ -81,11 +85,13 @@ class CreateAcc(QDialog):
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-app = QApplication(sys.argv)
-mainwindow = Login()
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(mainwindow)
-widget.setFixedWidth(480)
-widget.setFixedHeight(620)
-widget.show()
-app.exec_()
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    mainwindow = Login()
+    widget = QtWidgets.QStackedWidget()
+    widget.addWidget(mainwindow)
+    widget.setFixedWidth(480)
+    widget.setFixedHeight(620)
+    widget.show()
+    app.exec_()
