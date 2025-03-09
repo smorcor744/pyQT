@@ -57,6 +57,7 @@ class VentanaReservas(QMainWindow):
         reservas = BD_reservas().obtener_reservas()
 
         if len(reservas) == 0:
+            self.tablaReservas.setRowCount(0)
             QMessageBox.warning(self, "Advertencia", "No hay reservas registradas.")
         else:
             self.tablaReservas.setRowCount(len(reservas))

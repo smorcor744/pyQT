@@ -52,6 +52,7 @@ class VentanaHabitaciones(QMainWindow):
         habitaciones = BD_habitaciones().obtener_habitaciones()
 
         if len(habitaciones) == 0:
+            self.tablahabitaciones.setRowCount(0)
             QMessageBox.warning(self, "Advertencia", "No hay habitaciones registradas.")
         else:
             self.tablahabitaciones.setRowCount(len(habitaciones))

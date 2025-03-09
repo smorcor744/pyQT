@@ -61,6 +61,7 @@ class VentanaEmpleados(QMainWindow):
         empleados = BD_empleados().obtener_empleados()
 
         if len(empleados) == 0:
+            self.tabla_empleados.setRowCount(0)
             QMessageBox.warning(self, "Advertencia", "No hay empleados registrados.")
         else:
             # Crear una tabla para mostrar los empleados

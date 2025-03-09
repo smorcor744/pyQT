@@ -59,6 +59,7 @@ class VentanaClientes(QMainWindow):
         clientes = BD_clientes().obtener_clientes()
 
         if (clientes.__len__() == 0):
+            self.tablaClientes.setRowCount(0)
             QMessageBox.warning(self, "Advertencia", "No hay clientes registrados.")
         else:
             # Crear una tabla para mostrar los usuarios

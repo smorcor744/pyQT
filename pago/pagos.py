@@ -53,6 +53,7 @@ class VentanaPagos(QMainWindow):
         pagos = BD_pagos().obtener_pagos()
 
         if len(pagos) == 0:
+            self.tablaPagos.setRowCount(0)
             QMessageBox.warning(self, "Advertencia", "No hay pagos registrados.")
         else:
             self.tablaPagos.setRowCount(len(pagos))
