@@ -1,6 +1,7 @@
 import sys
 import sqlite3
 from PyQt6.QtWidgets import QApplication
+from FireBase.firebase_config import auth
 from FireBase.Login import Login  # Importa la ventana de login
 
 def ejecutar_sql():
@@ -19,7 +20,7 @@ def ejecutar_sql():
         print(f"Error al ejecutar el script SQL: {e}")
 
 if __name__ == "__main__":
-    
+
     ejecutar_sql()
     # Se crea la instancia de la aplicación
     app = QApplication(sys.argv)

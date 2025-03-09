@@ -80,7 +80,7 @@ class BD_clientes():
             cursor = conexion.cursor()
 
             # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM clientes WHERE email = ?", (email))
+            cursor.execute("DELETE FROM clientes WHERE email = ?", (email,))
             conexion.commit()
 
             # Verificar si el usuario fue eliminado

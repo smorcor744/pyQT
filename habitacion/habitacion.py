@@ -26,7 +26,6 @@ class VentanaHabitaciones(QMainWindow):
         self.bt_actualizar_habitacion.clicked.connect(self.actualizar_habitacion)
         self.bt_atras.clicked.connect(self.ir_atras)
 
-    # AHORA LOS MÉTODOS ESTÁN DENTRO DE LA CLASE
     def registrar_habitacion(self):
         numero = self.textNumero.text()
         tipo = self.comboTipo.currentText()

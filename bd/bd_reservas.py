@@ -58,7 +58,7 @@ class BD_reservas():
             cursor = conexion.cursor()
 
             # Consultar todas las reservas
-            cursor.execute("SELECT * FROM reservas WHERE email_cliente = ?", (email))
+            cursor.execute("SELECT * FROM reservas WHERE email_cliente = ?", (email,))
             reservas = cursor.fetchall()  # Obtener todos los registros
 
             return reservas  # Devolver los resultados
@@ -76,7 +76,7 @@ class BD_reservas():
             cursor = conexion.cursor()
 
             # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM reservas WHERE id = ?", (id))
+            cursor.execute("DELETE FROM reservas WHERE id = ?", (id,))
             conexion.commit()
 
             # Verificar si la reserva fue eliminada

@@ -1,9 +1,7 @@
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
-from PyQt5.uic import loadUi
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6.uic import loadUi
 from firebase_config import auth
-
-
 
 class Login(QMainWindow):
     def __init__(self):

@@ -99,8 +99,8 @@ class VentanaClientes(QMainWindow):
 
 
     def eliminar_cliente(self):
-        # Obtener el ID del usuario que se desea eliminar (puede ser desde una selección en una tabla, por ejemplo)
-        email_cliente = self.text_email_cliente.text()  # Suponiendo que tienes un campo de texto para ingresar el ID del usuario
+        # Obtener el email del clienteque se desea eliminar (puede ser desde una selección en una tabla, por ejemplo)
+        email_cliente = self.text_email_cliente.text()  # Suponiendo que tienes un campo de texto para ingresar el email del cliente
 
         if not email_cliente:  # Verificar el email del cliente
             QMessageBox.warning(self, "Error", "Campo obligatorio.")
@@ -115,7 +115,7 @@ class VentanaClientes(QMainWindow):
         else:
             QMessageBox.warning(self, "Error", msg)
         
-        self.textIdDelete.clear()
+        self.text_email_cliente.clear()
 
 
     def actualizar_cliente(self):

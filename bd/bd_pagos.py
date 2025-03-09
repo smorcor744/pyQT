@@ -17,7 +17,7 @@ class BD_pagos():
             # Insertar los datos en la base de datos
             cursor.execute('''
                 INSERT INTO pagos (id_reserva, monto, metodo_pago, fecha_pago) 
-                VALUES (?, ?, ?, ?, ?)''',
+                VALUES (?, ?, ?, ?)''',
                 (id_reserva, monto, metodo_pago, fecha_pago))
 
             conexion.commit()
@@ -95,7 +95,7 @@ class BD_pagos():
             cursor = conexion.cursor()
 
             # Eliminar el usuario de la base de datos
-            cursor.execute("DELETE FROM pagos WHERE id = ?", (id))
+            cursor.execute("DELETE FROM pagos WHERE id = ?", (id,))
             conexion.commit()
 
             # Verificar si la reserva fue eliminada
