@@ -3,6 +3,22 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt6.uic import loadUi
 from firebase_config import auth
 from PyQt6.QtWidgets import QLineEdit
+import sqlite3
+
+def ejecutar_sql():
+    """Ejecuta el archivo .sql que contiene las instrucciones de creación de tablas."""
+    try:
+        with open("hotel.sql", "r") as archivo_sql:
+            sql_script = archivo_sql.read()
+
+        conexion = sqlite3.connect('hotel.db')
+        cursor = conexion.cursor()
+        cursor.executescript(sql_script)
+        conexion.commit()
+        conexion.close()
+        print("Base de datos configurada correctamente.")
+    except Exception as e:
+        print(f"Error al ejecutar el script SQL: {e}")
 
 class Login(QMainWindow):
     def __init__(self):
@@ -24,8 +40,8 @@ class Login(QMainWindow):
     def loginfunction(self):
         email = self.email.text()
         password = self.password.text()
-        #email = "123456@gmail.com"
-        #password = "123456"
+        email = "123456@gmail.com"
+        password = "123456"
 
         if not email or not password:
             QMessageBox.warning(self, "Input Error", "Please enter both email and password.")
@@ -97,6 +113,8 @@ class CreateAcc(QMainWindow):
         self.close()  # Cierra la ventana actual de creación de cuenta
 
 if __name__ == "__main__":
+    ejecutar_sql()
+
     app = QApplication(sys.argv)  # Esto debe ir al principio, antes de crear cualquier ventana
 
     login_window = Login()  # Aquí instanciamos Login
