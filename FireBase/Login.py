@@ -8,6 +8,16 @@ class Login(BaseWindow):
     def __init__(self, widget):
         super().__init__(widget)
         loadUi("FireBase/ui/login.ui", self)
+
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet("""
+            QMainWindow {
+                background-image: url(fondo.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        """)
+        
         self.loginbutton.clicked.connect(self.loginfunction)
         self.password.setEchoMode(2)   
         self.createaccbutton.clicked.connect(self.gotocreate)
