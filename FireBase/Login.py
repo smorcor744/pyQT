@@ -1,7 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
-from PyQt5.uic import loadUi
+from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6.uic import loadUi
 from firebase_config import auth
+from PyQt6.QtWidgets import QLineEdit
 
 class Login(QMainWindow):
     def __init__(self):
@@ -15,34 +16,43 @@ class Login(QMainWindow):
             }
         """)
         self.loginbutton.clicked.connect(self.loginfunction)
-        self.password.setEchoMode(2)
+
+        self.password.setEchoMode(QLineEdit.EchoMode.Password)
+
         self.createaccbutton.clicked.connect(self.gotocreate)
 
     def loginfunction(self):
         email = self.email.text()
         password = self.password.text()
+        #email = "123456@gmail.com"
+        #password = "123456"
+
         if not email or not password:
             QMessageBox.warning(self, "Input Error", "Please enter both email and password.")
             return
+        
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             QMessageBox.information(self, "Success", f"Welcome {user['email']}!")
-            try:
-                from principal.window_main import VentanaPrincipal
-                self.window_main = VentanaPrincipal()
-                self.window_main.show()
-                self.hide()
-            except Exception as e:
-                print(e)
-                QMessageBox.critical(self, "Login Error", "No se hha podido acceder al menú principal.")
-        except:
+            self.gotomain()
+
+        except Exception as e:
+            print(f"Error during login: {e}")
             self.invalid.setVisible(True)
             QMessageBox.critical(self, "Login Error", "Invalid email or password. Please try again.")
+    
+    def gotomain(self):
+        # Aquí instanciamos la ventana principal correctamente
+        from principal.window_main import VentanaPrincipal
+        self.window_main = VentanaPrincipal()
+        self.window_main.show()
+        self.close()  # Cierra la ventana de login actual
 
     def gotocreate(self):
+        # Aquí instanciamos la ventana de creación de cuenta correctamente
         self.createacc = CreateAcc()
         self.createacc.show()
-        self.hide()
+        self.close()  # Cierra la ventana de login y muestra la de creación de cuenta
 
 class CreateAcc(QMainWindow):
     def __init__(self):
@@ -56,39 +66,40 @@ class CreateAcc(QMainWindow):
         """)
         loadUi("FireBase/ui/createacc.ui", self)
         self.signupbutton.clicked.connect(self.createaccfunction)
-        self.password.setEchoMode(2)
-        self.confirmpass.setEchoMode(2)
+        self.password.setEchoMode(QLineEdit.EchoMode.Password)
+        self.confirmpass.setEchoMode(QLineEdit.EchoMode.Password)
         self.login.clicked.connect(self.gotologin)
 
     def createaccfunction(self):
         email = self.email.text()
         password = self.password.text()
         confirm_password = self.confirmpass.text()
+        
         if not email or not password or not confirm_password:
             QMessageBox.warning(self, "Input Error", "Please fill in all fields.")
             return
+        
         if password != confirm_password:
             QMessageBox.warning(self, "Password Error", "Passwords do not match. Please try again.")
             return
+        
         try:
             auth.create_user_with_email_and_password(email, password)
             QMessageBox.information(self, "Success", "Account created successfully!")
-            self.login = Login()
-            self.login.show()
-            self.hide()
-        except:
+            self.gotologin()
+        except Exception as e:
+            print(f"Error during account creation: {e}")
             QMessageBox.critical(self, "Signup Error", "Failed to create account. Please try again.")
 
     def gotologin(self):
-        self.login = Login()
+        self.login = Login()  # Reusamos Login aquí
         self.login.show()
-        self.hide()
-        self.createacc = CreateAcc()
-        self.createacc.show()
-        self.hide()
+        self.close()  # Cierra la ventana actual de creación de cuenta
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    login_window = Login()
+    app = QApplication(sys.argv)  # Esto debe ir al principio, antes de crear cualquier ventana
+
+    login_window = Login()  # Aquí instanciamos Login
     login_window.show()
-    sys.exit(app.exec())
+
+    sys.exit(app.exec())  # Ejecuta la aplicación y entra al bucle de eventos
