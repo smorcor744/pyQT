@@ -38,7 +38,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Habitacion</string>
+     <string>Habitación</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -46,12 +46,12 @@
      <rect>
       <x>50</x>
       <y>155</y>
-      <width>49</width>
+      <width>131</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Numero</string>
+     <string>Número de habitación</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -72,12 +72,12 @@
      <rect>
       <x>50</x>
       <y>290</y>
-      <width>71</width>
+      <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Precio noche</string>
+     <string>Precio por noche</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -171,14 +171,14 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>60</x>
       <y>540</y>
-      <width>141</width>
+      <width>271</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Introduce id del cliente</string>
+     <string>Introduce el número de la habitación.</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_eliminar_habitacion">
@@ -268,14 +268,14 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>780</x>
       <y>540</y>
-      <width>141</width>
+      <width>211</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Introduce id del cliente</string>
+     <string>Introduce el número de la habitación.</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_buscar_habitacion">

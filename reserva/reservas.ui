@@ -46,12 +46,12 @@
      <rect>
       <x>70</x>
       <y>100</y>
-      <width>111</width>
+      <width>141</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Numero habitacion</string>
+     <string>Número de habitación</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -59,12 +59,12 @@
      <rect>
       <x>70</x>
       <y>170</y>
-      <width>81</width>
+      <width>161</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fecha checkin</string>
+     <string>Fecha de check-in</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -72,12 +72,12 @@
      <rect>
       <x>70</x>
       <y>240</y>
-      <width>91</width>
+      <width>141</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fecha checkOut</string>
+     <string>Fecha de CheckOut</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -191,7 +191,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce el ID del cliente.</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_eliminar_reservas">
@@ -281,14 +281,14 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>800</x>
       <y>540</y>
-      <width>141</width>
+      <width>171</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce el email del cliente.</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_buscar_reserva">
@@ -318,7 +318,7 @@
     </property>
     <property name="maximumDateTime">
      <datetime>
-      <hour>21</hour>
+      <hour>20</hour>
       <minute>59</minute>
       <second>59</second>
       <year>2035</year>
@@ -328,7 +328,7 @@
     </property>
     <property name="minimumDateTime">
      <datetime>
-      <hour>23</hour>
+      <hour>22</hour>
       <minute>0</minute>
       <second>0</second>
       <year>2025</year>
@@ -348,7 +348,7 @@
     </property>
     <property name="maximumDateTime">
      <datetime>
-      <hour>21</hour>
+      <hour>20</hour>
       <minute>59</minute>
       <second>59</second>
       <year>2035</year>
@@ -358,7 +358,7 @@
     </property>
     <property name="minimumDateTime">
      <datetime>
-      <hour>23</hour>
+      <hour>22</hour>
       <minute>0</minute>
       <second>0</second>
       <year>2025</year>
