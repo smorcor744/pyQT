@@ -32,7 +32,7 @@ class BD_reservas():
         finally:
             conexion.close()  # Cerrar la conexión de manera segura
 
-        
+    
     def obtener_reservas(self):
         """Obtiene todos las reservas registradas en la base de datos."""
         try:

@@ -128,4 +128,3 @@ class VentanaPagos(QMainWindow):
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.hide()
-

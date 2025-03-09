@@ -4,7 +4,6 @@ from PyQt6.QtCore import *
 from PyQt6 import uic
 from bd.bd_clientes import BD_clientes
 
-
 class VentanaClientes(QMainWindow):
     def __init__(self):
         super(VentanaClientes, self).__init__()
