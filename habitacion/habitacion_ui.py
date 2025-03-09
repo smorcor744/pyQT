@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Ventana_pagos.ui'
+## Form generated from reading UI file 'habitacion.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(140, 70, 91, 41))
+        self.label.setGeometry(QRect(140, 50, 91, 41))
         font = QFont()
         font.setPointSize(14)
         self.label.setFont(font)
@@ -57,10 +57,10 @@ class Ui_MainWindow(object):
         self.bt_mostrar_pagos.setObjectName(u"bt_mostrar_pagos")
         self.bt_mostrar_pagos.setGeometry(QRect(630, 510, 121, 31))
         self.bt_mostrar_pagos.setStyleSheet(u"background-color: rgb(0, 85, 255);")
-        self.tablaPagos = QTableWidget(self.centralwidget)
-        self.tablaPagos.setObjectName(u"tablaPagos")
-        self.tablaPagos.setEnabled(True)
-        self.tablaPagos.setGeometry(QRect(390, 10, 611, 481))
+        self.tablahabitaciones = QTableWidget(self.centralwidget)
+        self.tablahabitaciones.setObjectName(u"tablahabitaciones")
+        self.tablahabitaciones.setEnabled(True)
+        self.tablahabitaciones.setGeometry(QRect(390, 10, 611, 481))
         self.textIdDelete = QLineEdit(self.centralwidget)
         self.textIdDelete.setObjectName(u"textIdDelete")
         self.textIdDelete.setGeometry(QRect(80, 560, 181, 31))

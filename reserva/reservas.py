@@ -8,7 +8,7 @@ class VentanaReservas(QMainWindow):
     def __init__(self):
         super(VentanaReservas, self).__init__()
 
-        uic.loadUi("./reserva/Ventana_reservas.ui", self)
+        uic.loadUi("./reserva/reservas.ui", self)
         self.setWindowTitle("Registro de Reservas")
 
         self.setStyleSheet("""

@@ -9,7 +9,7 @@ class VentanaPagos(QMainWindow):
     def __init__(self):
         super(VentanaPagos, self).__init__()
 
-        uic.loadUi("./pago/Ventana_pagos.ui", self)
+        uic.loadUi("./pago/pagos.ui", self)
         self.setWindowTitle("Registro de Pagos")
 
         self.setStyleSheet("""
