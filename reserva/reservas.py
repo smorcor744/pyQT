@@ -22,6 +22,7 @@ class VentanaReservas(QMainWindow):
         # Conectar botones a funciones
         self.bt_registrar_reserva.clicked.connect(self.registrar_reserva)
         self.bt_mostrar_reservas.clicked.connect(self.mostrar_reservas)
+        self.bt_buscar_reserva.clicked.connect(self.buscar_reservas)
         self.bt_eliminar_reservas.clicked.connect(self.eliminar_reserva)
         self.bt_actualizar_reserva.clicked.connect(self.actualizar_reserva)
         self.bt_atras.clicked.connect(self.ir_atras)
@@ -55,6 +56,21 @@ class VentanaReservas(QMainWindow):
 
     def mostrar_reservas(self):
         reservas = BD_reservas().obtener_reservas()
+
+        if len(reservas) == 0:
+            QMessageBox.warning(self, "Advertencia", "No hay reservas registradas.")
+        else:
+            self.tablaReservas.setRowCount(len(reservas))
+            self.tablaReservas.setColumnCount(5)
+            self.tablaReservas.setHorizontalHeaderLabels(["ID", "Email Cliente", "N° Habitación", "Check-in", "Check-out", "Estado"])
+
+            for row, reserva in enumerate(reservas):
+                for col, value in enumerate(reserva):
+                    self.tablaReservas.setItem(row, col, QTableWidgetItem(str(value)))
+    
+    def buscar_reservas(self):
+        email = self.text_email_cliente.text()
+        reservas = BD_reservas().buscar_reservas_por_email(email)
 
         if len(reservas) == 0:
             QMessageBox.warning(self, "Advertencia", "No hay reservas registradas.")
