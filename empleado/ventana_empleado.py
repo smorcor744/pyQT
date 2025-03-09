@@ -9,7 +9,7 @@ class VentanaEmpleados(QMainWindow):
     def __init__(self):
         super(VentanaEmpleados, self).__init__()
 
-        ui_file = os.path.join(os.path.dirname(__file__), "mpleado/ventana_empleado.ui")
+        ui_file = os.path.join(os.path.dirname(__file__), "empleado/ventana_empleado.ui")
         uic.loadUi(ui_file, self)
 
 
