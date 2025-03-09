@@ -144,7 +144,7 @@ class VentanaClientes(QMainWindow):
     
     # Vuelve a la ventana principal
     def ir_atras(self):
-        from window_main import VentanaPrincipal
+        from principal.window_main import VentanaPrincipal
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.hide()

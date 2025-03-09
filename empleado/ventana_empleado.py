@@ -144,7 +144,7 @@ class VentanaEmpleados(QMainWindow):
 
     def ir_atras(self):
         """Vuelve a la ventana principal."""
-        from window_main import VentanaPrincipal
+        from principal.window_main import VentanaPrincipal
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.hide()
