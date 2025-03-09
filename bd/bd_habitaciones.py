@@ -33,7 +33,7 @@ class BD_habitaciones():
             conexion.close()  # Cerrar la conexión de manera segura
 
         
-    def obtener_habitacion(self):
+    def obtener_habitaciones(self):
         """Obtiene todas las habitaciones registradas en la base de datos."""
         try:
             conexion = self._conectar()
@@ -44,6 +44,24 @@ class BD_habitaciones():
             habitaciones = cursor.fetchall()  # Obtener todos los registros
 
             return habitaciones  # Devolver los resultados
+
+        except Exception as e:
+            print(f"Error al obtener las habitaciones: {e}")
+            return []
+        finally:
+            conexion.close()  # Cerrar la conexión de manera segura
+
+    def buscar_habitacion_por_numero(self, numero):
+        """Obtiene la habitación registrada en la base de datos."""
+        try:
+            conexion = self._conectar()
+            cursor = conexion.cursor()
+
+            # Consultar la  habitacion
+            cursor.execute("SELECT * FROM habitaciones WHERE numero = ?", (numero))
+            habitacion = cursor.fetchone()  # Obtener todos los registros
+
+            return habitacion  # Devolver los resultados
 
         except Exception as e:
             print(f"Error al obtener las habitaciones: {e}")

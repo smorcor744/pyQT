@@ -63,6 +63,21 @@ class VentanaPagos(QMainWindow):
                 for col, value in enumerate(pago):
                     self.tablaPagos.setItem(row, col, QTableWidgetItem(str(value)))
 
+    def mostrar_pagos(self):
+        email = self.text_email.cliente.text()
+        pagos = BD_pagos().buscar_pagos_por_email(email)
+
+        if len(pagos) == 0:
+            QMessageBox.warning(self, "Advertencia", "No hay pagos registrados.")
+        else:
+            self.tablaPagos.setRowCount(len(pagos))
+            self.tablaPagos.setColumnCount(5)
+            self.tablaPagos.setHorizontalHeaderLabels(["ID", "Reserva", "Monto", "Método de Pago", "Fecha"])
+
+            for row, pago in enumerate(pagos):
+                for col, value in enumerate(pago):
+                    self.tablaPagos.setItem(row, col, QTableWidgetItem(str(value)))
+
     def eliminar_pago(self):
         id_pago = self.textIdDelete.text()
 
