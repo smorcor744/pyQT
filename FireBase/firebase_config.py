@@ -21,7 +21,7 @@ auth = firebase.auth()
 class Login(QDialog):
     def __init__(self):
         super(Login, self).__init__()
-        uic.loadUi("./Firebase/login.ui", self)
+        uic.loadUi("./FireBase/login.ui", self)
         self.loginbutton.clicked.connect(self.loginfunction)
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.createaccbutton.clicked.connect(self.gotocreate)
@@ -53,7 +53,7 @@ class Login(QDialog):
 class CreateAcc(QDialog):
     def __init__(self):
         super(CreateAcc, self).__init__() 
-        loadUi("createacc.ui", self)
+        uic.loadUi(":/FireBase/createacc.ui", self)
         self.signupbutton.clicked.connect(self.createaccfunction)
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.confirmpass.setEchoMode(QtWidgets.QLineEdit.Password)
