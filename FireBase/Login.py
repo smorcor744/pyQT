@@ -40,8 +40,8 @@ class Login(QMainWindow):
     def loginfunction(self):
         email = self.email.text()
         password = self.password.text()
-        email = "123456@gmail.com"
-        password = "123456"
+        #email = "123456@gmail.com"
+        #password = "123456"
 
         if not email or not password:
             QMessageBox.warning(self, "Input Error", "Please enter both email and password.")
