@@ -129,8 +129,3 @@ class VentanaPagos(QMainWindow):
         self.window_main.show()
         self.hide()
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = VentanaPagos()
-    window.show()
-    app.exec()

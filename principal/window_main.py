@@ -22,6 +22,7 @@ def ejecutar_sql():
 class VentanaPrincipal(QMainWindow):
     def __init__(self):
         super(VentanaPrincipal, self).__init__()
+        ejecutar_sql()
 
         uic.loadUi("./principal/ventana_principal.ui",self)
         self.setWindowTitle("Bienvenido a OMAHA")
@@ -79,21 +80,7 @@ class VentanaPrincipal(QMainWindow):
 
     # Abre la ventana de login
     def cerrar_sesion(self):
-        from FireBase.FirebaseApp import Application
-        self.ventana_empleado = Application()
-        self.ventana_empleado.show()
+        from FireBase.Login import Application
+        self.Login = Application()
+        self.Login.show()
         self.hide()
-
-
-
-if __name__ == "__main__":
-    # se ejecuta la función para crear las tablas
-    ejecutar_sql()
-    # se crea la instancia de la aplicación
-    app = QApplication(sys.argv)
-    # se crea la instancia de la ventana
-    window = VentanaPrincipal()
-    # se muestra la ventana 
-    window.show()
-    # se entrega el control al sistema operativo
-    app.exec()

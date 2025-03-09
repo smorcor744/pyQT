@@ -149,14 +149,3 @@ class VentanaEmpleados(QMainWindow):
         self.window_main.show()
         self.hide()
 
-
-if __name__ == "__main__":
-    
-    # Crear la instancia de la aplicación
-    app = QApplication(sys.argv)
-    # Crear la instancia de la ventana
-    window = VentanaEmpleados()
-    # Mostrar la ventana
-    window.show()
-    # Entregar el control al sistema operativo
-    app.exec()

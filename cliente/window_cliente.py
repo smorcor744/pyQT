@@ -149,13 +149,3 @@ class VentanaClientes(QMainWindow):
         self.window_main.show()
         self.hide()
 
-
-if __name__ == "__main__":
-    # se crea la instancia de la aplicación
-    app = QApplication(sys.argv)
-    # se crea la instancia de la ventana
-    window = VentanaClientes()
-    # se muestra la ventana 
-    window.show()
-    # se entrega el control al sistema operativo
-    app.exec() 

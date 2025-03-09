@@ -133,8 +133,4 @@ class VentanaReservas(QMainWindow):
         self.window_main.show()
         self.hide()
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = VentanaReservas()
-    window.show()
-    app.exec()
+
