@@ -42,7 +42,7 @@ class Login(QMainWindow):
                 background-repeat: no-repeat;
             }}
         """)
-        
+
         self.loginbutton.clicked.connect(self.loginfunction)
 
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
@@ -138,3 +138,17 @@ class CreateAcc(QMainWindow):
         self.login = Login()  # Reusamos Login aquí
         self.login.show()
         self.close()  # Cierra la ventana actual de creación de cuenta
+
+if __name__ == "__main__":
+    ejecutar_sql()
+    # Crear la aplicación
+    app = QApplication(sys.argv)
+
+    # Crear una instancia de la ventana de inicio de sesión
+    login_window = Login()
+
+    # Mostrar la ventana de inicio de sesión
+    login_window.show()
+
+    # Ejecutar la aplicación
+    sys.exit(app.exec())
