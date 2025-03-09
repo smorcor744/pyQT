@@ -1,23 +1,9 @@
-import sys
-import sqlite3
+
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.uic import loadUi
 from firebase_config import auth
 
-def ejecutar_sql():
-    """Ejecuta el archivo .sql que contiene las instrucciones de creación de tablas."""
-    try:
-        with open("hotel.sql", "r") as archivo_sql:
-            sql_script = archivo_sql.read()
 
-        conexion = sqlite3.connect('hotel.db')
-        cursor = conexion.cursor()
-        cursor.executescript(sql_script)
-        conexion.commit()
-        conexion.close()
-        print("Base de datos configurada correctamente.")
-    except Exception as e:
-        print(f"Error al ejecutar el script SQL: {e}")
 
 class Login(QMainWindow):
     def __init__(self):
@@ -100,10 +86,3 @@ class CreateAcc(QMainWindow):
         self.createacc = CreateAcc()
         self.createacc.show()
         self.hide()
-
-if __name__ == "__main__":
-    ejecutar_sql()
-    app = QApplication(sys.argv)
-    login_window = Login()
-    login_window.show()
-    sys.exit(app.exec())
