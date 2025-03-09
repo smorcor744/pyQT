@@ -26,8 +26,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>10</y>
+      <x>130</x>
+      <y>60</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -45,7 +45,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>70</y>
+      <y>155</y>
       <width>49</width>
       <height>16</height>
      </rect>
@@ -58,7 +58,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>140</y>
+      <y>220</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -71,16 +71,16 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>210</y>
+      <y>290</y>
       <width>71</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>precio_noche</string>
+     <string>Precio noche</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -90,20 +90,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Email</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>280</y>
-      <width>71</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>disponible</string>
+     <string>Disponible</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_registrar_habitacion">
@@ -126,7 +113,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>95</y>
+      <y>180</y>
       <width>241</width>
       <height>31</height>
      </rect>
@@ -136,17 +123,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>230</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="textEmail">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>370</y>
+      <y>310</y>
       <width>241</width>
       <height>31</height>
      </rect>
@@ -201,7 +178,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce id del cliente</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_eliminar_habitacion">
@@ -298,7 +275,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Introduce email del cliente</string>
+     <string>Introduce id del cliente</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_buscar_habitacion">
@@ -321,7 +298,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>170</y>
+      <y>250</y>
       <width>81</width>
       <height>22</height>
      </rect>
@@ -341,7 +318,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>300</y>
+      <y>370</y>
       <width>75</width>
       <height>20</height>
      </rect>
