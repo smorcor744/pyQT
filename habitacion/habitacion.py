@@ -78,15 +78,15 @@ class VentanaHabitaciones(QMainWindow):
             QMessageBox.warning(self, "Advertencia", "No se encontró una habitación con ese número.")
         else:
             # Crear una tabla para mostrar los usuarios
-            self.tablaHabitaciones.setRowCount(1)  # Número de filas
-            self.tablaHabitaciones.setColumnCount(6)  # 6 columnas: id, nombre, apellido1, apellido2, dni, email
+            self.tablahabitaciones.setRowCount(1)  # Número de filas
+            self.tablahabitaciones.setColumnCount(6)  # 6 columnas: id, nombre, apellido1, apellido2, dni, email
 
             # Configurar los encabezados de las columnas
-            self.tablaHabitaciones.setHorizontalHeaderLabels(["ID, Número", "Precio por Noche","Tipo" , "Disponible"])
+            self.tablahabitaciones.setHorizontalHeaderLabels(["ID, Número", "Precio por Noche","Tipo" , "Disponible"])
 
             # Llenar la tabla con los datos de los usuarios
             for col, value in enumerate(habitacion):
-                self.tablaHabitaciones.setItem(0, col, QTableWidgetItem(str(value)))
+                self.tablahabitaciones.setItem(0, col, QTableWidgetItem(str(value)))
 
 
     def eliminar_habitacion(self):
