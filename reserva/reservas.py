@@ -70,6 +70,12 @@ class VentanaReservas(QMainWindow):
     
     def buscar_reservas(self):
         email = self.text_email_cliente.text()
+
+        # Validar que los campos no estén vacíos
+        if not (email):
+            QMessageBox.warning(self, "Error", "Campo obligatorio.")
+            return
+        
         reservas = BD_reservas().buscar_reservas_por_email(email)
 
         if len(reservas) == 0:

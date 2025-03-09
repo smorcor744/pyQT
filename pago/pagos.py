@@ -23,6 +23,7 @@ class VentanaPagos(QMainWindow):
         # Conectar botones con funciones
         self.bt_registrar_pago.clicked.connect(self.registrar_pago)
         self.bt_mostrar_pagos.clicked.connect(self.mostrar_pagos)
+        self.bt_buscar_pago.clicked.connect(self.buscar_pago)
         self.bt_eliminar_pago.clicked.connect(self.eliminar_pago)
         self.bt_actualizar_pago.clicked.connect(self.actualizar_pago)
         self.bt_atras.clicked.connect(self.ir_atras)
@@ -63,8 +64,14 @@ class VentanaPagos(QMainWindow):
                 for col, value in enumerate(pago):
                     self.tablaPagos.setItem(row, col, QTableWidgetItem(str(value)))
 
-    def mostrar_pagos(self):
+    def buscar_pago(self):
         email = self.text_email.cliente.text()
+
+        # Validar que los campos no estén vacíos
+        if not (email):
+            QMessageBox.warning(self, "Error", "Campo obligatorio.")
+            return
+        
         pagos = BD_pagos().buscar_pagos_por_email(email)
 
         if len(pagos) == 0:

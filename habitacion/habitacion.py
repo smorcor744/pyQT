@@ -65,7 +65,7 @@ class VentanaHabitaciones(QMainWindow):
                     self.tablahabitaciones.setItem(row, col, QTableWidgetItem(str(value)))
 
     def buscar_habitacion(self):
-        numero = self.text_numero_buscar.text()
+        numero = self.text_buscar_numero.text()
 
         # Validar que los campos no estén vacíos
         if not (numero):

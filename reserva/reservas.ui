@@ -77,7 +77,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Fecha de CheckOut</string>
+     <string>fecha_de Checkout</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -265,7 +265,7 @@
      <iconset theme="go-previous"/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="textIdBuscar">
+   <widget class="QLineEdit" name="text_email_cliente">
     <property name="geometry">
      <rect>
       <x>790</x>

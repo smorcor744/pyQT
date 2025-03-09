@@ -52,7 +52,7 @@ class BD_pagos():
             conexion.close()  # Cerrar la conexión de manera segura
 
     def obtener_pagos_por_email(self, email):
-        """Obtiene los pagos registrados de un cliente en la base de datos."""
+        """Obtiene los pagos registrados de un cliente meidante su email en la base de datos."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
@@ -89,7 +89,7 @@ class BD_pagos():
             conexion.close()  # Cerrar la conexión de manera segura
 
     def eliminar_pago(self, id):
-        """Elimina un pago de la base de datos mediante el email del cliente."""
+        """Elimina un pago de la base de datos mediante el id del pago."""
         try:
             conexion = self._conectar()
             cursor = conexion.cursor()
