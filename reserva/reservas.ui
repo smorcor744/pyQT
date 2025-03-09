@@ -77,7 +77,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>fecha_checkout</string>
+     <string>Fecha checkOut</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -318,7 +318,7 @@
     </property>
     <property name="maximumDateTime">
      <datetime>
-      <hour>22</hour>
+      <hour>21</hour>
       <minute>59</minute>
       <second>59</second>
       <year>2035</year>
@@ -328,12 +328,12 @@
     </property>
     <property name="minimumDateTime">
      <datetime>
-      <hour>0</hour>
+      <hour>23</hour>
       <minute>0</minute>
       <second>0</second>
       <year>2025</year>
       <month>3</month>
-      <day>15</day>
+      <day>14</day>
      </datetime>
     </property>
    </widget>
@@ -348,7 +348,7 @@
     </property>
     <property name="maximumDateTime">
      <datetime>
-      <hour>22</hour>
+      <hour>21</hour>
       <minute>59</minute>
       <second>59</second>
       <year>2035</year>
@@ -358,12 +358,12 @@
     </property>
     <property name="minimumDateTime">
      <datetime>
-      <hour>0</hour>
+      <hour>23</hour>
       <minute>0</minute>
       <second>0</second>
       <year>2025</year>
       <month>3</month>
-      <day>15</day>
+      <day>14</day>
      </datetime>
     </property>
    </widget>
