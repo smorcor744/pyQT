@@ -6,6 +6,14 @@ from shared import BaseWindow
 class CreateAcc(BaseWindow):
     def __init__(self, widget):
         super().__init__(widget)
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet("""
+            QMainWindow {
+                background-image: url(fondo.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        """)
         loadUi("FireBase/ui/createacc.ui", self)
         self.signupbutton.clicked.connect(self.createaccfunction)
         self.password.setEchoMode(2)
