@@ -49,26 +49,26 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.bt_clientes)
 
-        self.pushButton_3 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        sizePolicy1.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy1)
+        self.bt_habitaciones = QPushButton(self.verticalLayoutWidget)
+        self.bt_habitaciones.setObjectName(u"bt_habitaciones")
+        sizePolicy1.setHeightForWidth(self.bt_habitaciones.sizePolicy().hasHeightForWidth())
+        self.bt_habitaciones.setSizePolicy(sizePolicy1)
 
-        self.verticalLayout.addWidget(self.pushButton_3)
+        self.verticalLayout.addWidget(self.bt_habitaciones)
 
-        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy1.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy1)
+        self.bt_reservas = QPushButton(self.verticalLayoutWidget)
+        self.bt_reservas.setObjectName(u"bt_reservas")
+        sizePolicy1.setHeightForWidth(self.bt_reservas.sizePolicy().hasHeightForWidth())
+        self.bt_reservas.setSizePolicy(sizePolicy1)
 
-        self.verticalLayout.addWidget(self.pushButton_2)
+        self.verticalLayout.addWidget(self.bt_reservas)
 
-        self.pushButton_4 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        sizePolicy1.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy1)
+        self.bt_pagos = QPushButton(self.verticalLayoutWidget)
+        self.bt_pagos.setObjectName(u"bt_pagos")
+        sizePolicy1.setHeightForWidth(self.bt_pagos.sizePolicy().hasHeightForWidth())
+        self.bt_pagos.setSizePolicy(sizePolicy1)
 
-        self.verticalLayout.addWidget(self.pushButton_4)
+        self.verticalLayout.addWidget(self.bt_pagos)
 
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
@@ -82,6 +82,12 @@ class Ui_MainWindow(object):
         self.bt_empleados.setGeometry(QRect(590, 130, 129, 69))
         sizePolicy1.setHeightForWidth(self.bt_empleados.sizePolicy().hasHeightForWidth())
         self.bt_empleados.setSizePolicy(sizePolicy1)
+        self.bt_cerrar_sesion = QPushButton(self.centralwidget)
+        self.bt_cerrar_sesion.setObjectName(u"bt_cerrar_sesion")
+        self.bt_cerrar_sesion.setGeometry(QRect(370, 490, 101, 41))
+        sizePolicy1.setHeightForWidth(self.bt_cerrar_sesion.sizePolicy().hasHeightForWidth())
+        self.bt_cerrar_sesion.setSizePolicy(sizePolicy1)
+        self.bt_cerrar_sesion.setStyleSheet(u"background-color: rgb(0, 85, 255);")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -99,10 +105,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.bt_clientes.setText(QCoreApplication.translate("MainWindow", u"CLIENTES", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"RESERVAS", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"HABITACIONES", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"PAGOS", None))
+        self.bt_habitaciones.setText(QCoreApplication.translate("MainWindow", u"HABITACIONES", None))
+        self.bt_reservas.setText(QCoreApplication.translate("MainWindow", u"RESERVAS", None))
+        self.bt_pagos.setText(QCoreApplication.translate("MainWindow", u"PAGOS", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"BIENVENIDO A HOTEL OMAHA", None))
         self.bt_empleados.setText(QCoreApplication.translate("MainWindow", u"EMPLEADOS", None))
+        self.bt_cerrar_sesion.setText(QCoreApplication.translate("MainWindow", u"CERRAR SESI\u00d3N", None))
     # retranslateUi
 
