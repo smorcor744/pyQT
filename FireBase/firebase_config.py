@@ -1,8 +1,9 @@
 import sys
 import pyrebase
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
-from PyQt5.uic import uic
+from PyQt6 import QtWidgets
+from PyQt6.QtWidgets import QDialog, QApplication, QMessageBox
+from PyQt6 import uic
+from principal.window_main import VentanaPrincipal
 
 firebaseConfig = {
     "apiKey": "AIzaSyChX3dYojSJAh5cQGuTw8rdBdGdcT23zlE",
@@ -37,7 +38,6 @@ class Login(QDialog):
             user = auth.sign_in_with_email_and_password(email, password)
             QMessageBox.information(self, "Success", f"Welcome {user['email']}!")
             # Aquí puedes redirigir al usuario a la ventana principal del hotel
-            from principal.window_main import VentanaPrincipal
             self.ventana_empleado = VentanaPrincipal()
             self.ventana_empleado.show()
             self.hide()
