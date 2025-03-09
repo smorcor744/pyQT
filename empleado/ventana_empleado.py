@@ -118,7 +118,7 @@ class VentanaEmpleados(QMainWindow):
         else:
             QMessageBox.warning(self, "Error", msg)
 
-        self.textIdDelete.clear()
+        self.text_borrar_empleado.clear()
 
     def actualizar_empleado(self):
         """Actualiza los datos de un empleado en la base de datos."""
