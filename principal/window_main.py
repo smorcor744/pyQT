@@ -79,9 +79,9 @@ class VentanaPrincipal(QMainWindow):
 
     # Abre la ventana de login
     def cerrar_sesion(self):
-        from FireBase.firebase_config import Login
-        self.ventana_empleado = Login()
-        self.ventana_empleado.show()
+        from FireBase.FirebaseApp import Login
+        self.FirebaseApp = Login()
+        self.FirebaseApp.show()
         self.hide()
 
 
