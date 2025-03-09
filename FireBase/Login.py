@@ -24,8 +24,8 @@ class Login(BaseWindow):
             QMessageBox.information(self, "Success", f"Welcome {user['email']}!")
             try:
                 from principal.window_main import VentanaPrincipal
-                self.ventana_empleado = VentanaPrincipal()
-                self.ventana_empleado.show()
+                self.window_main = VentanaPrincipal()
+                self.window_main.show()
                 self.hide()
             except Exception as e:
                 self.invalid.setVisible(True)
