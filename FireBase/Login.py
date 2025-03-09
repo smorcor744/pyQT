@@ -1,18 +1,22 @@
-from PyQt5.QtWidgets import QMessageBox, QStackedWidget
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.uic import loadUi
 from firebase_config import auth
-from shared import BaseWindow
 
-
-class Login(BaseWindow):
-    def __init__(self, widget):
-        super().__init__(widget)
+class Login(QMainWindow):
+    def __init__(self):
+        super().__init__()
         loadUi("FireBase/ui/login.ui", self)
-
+        self.setStyleSheet("""
+            QMainWindow {
+                background-image: url(fondo.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        """)
         self.loginbutton.clicked.connect(self.loginfunction)
-        self.password.setEchoMode(2)   
+        self.password.setEchoMode(2)
         self.createaccbutton.clicked.connect(self.gotocreate)
-        self.invalid.setVisible(False)
 
     def loginfunction(self):
         email = self.email.text()
@@ -29,32 +33,59 @@ class Login(BaseWindow):
                 self.window_main.show()
                 self.hide()
             except Exception as e:
-                self.invalid.setVisible(True)
                 print(e)
-                QMessageBox.critical(self, "Login Error", "No se a podido acceder al menú principal.")
+                QMessageBox.critical(self, "Login Error", "No se ha podido acceder al menú principal.")
         except:
             self.invalid.setVisible(True)
             QMessageBox.critical(self, "Login Error", "Invalid email or password. Please try again.")
 
     def gotocreate(self):
-        from CreateAcc import CreateAcc 
-        createacc = CreateAcc(self.widget)
-        self.widget.addWidget(createacc)
-        self.widget.setCurrentIndex(self.widget.currentIndex() + 1)
+        self.createacc = CreateAcc()
+        self.createacc.show()
+        self.hide()
 
+class CreateAcc(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("""
+            QMainWindow {
+                background-image: url(fondo.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        """)
+        loadUi("FireBase/ui/createacc.ui", self)
+        self.signupbutton.clicked.connect(self.createaccfunction)
+        self.password.setEchoMode(2)
+        self.confirmpass.setEchoMode(2)
+        self.login.clicked.connect(self.gotologin)
+
+    def createaccfunction(self):
+        email = self.email.text()
+        password = self.password.text()
+        confirm_password = self.confirmpass.text()
+        if not email or not password or not confirm_password:
+            QMessageBox.warning(self, "Input Error", "Please fill in all fields.")
+            return
+        if password != confirm_password:
+            QMessageBox.warning(self, "Password Error", "Passwords do not match. Please try again.")
+            return
+        try:
+            auth.create_user_with_email_and_password(email, password)
+            QMessageBox.information(self, "Success", "Account created successfully!")
+            self.login = Login()
+            self.login.show()
+            self.hide()
+        except:
+            QMessageBox.critical(self, "Signup Error", "Failed to create account. Please try again.")
+
+    def gotologin(self):
+        self.login = Login()
+        self.login.show()
+        self.hide()
 
 if __name__ == "__main__":
-    import sys
-    from PyQt5.QtWidgets import QApplication
-
-    # Crea la instancia de QApplication
     app = QApplication(sys.argv)
-
-    # Crea el QStackedWidget y la ventana de login
-    widget = QStackedWidget()
-    login_window = Login(widget)
-    widget.addWidget(login_window)
-    widget.show()
-
-    # Ejecuta el bucle de eventos
-    sys.exit(app.exec_())
+    login_window = Login()
+    login_window.show()
+    sys.exit(app.exec())

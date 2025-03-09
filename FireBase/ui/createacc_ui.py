@@ -84,11 +84,6 @@ class Ui_Dialog(object):
         self.label_5.setObjectName(u"label_5")
         self.label_5.setGeometry(QRect(210, 420, 141, 16))
         self.label_5.setStyleSheet(u"color:rgb(255, 255, 255)")
-        self.invalid = QLabel(self.centralwidget)
-        self.invalid.setObjectName(u"invalid")
-        self.invalid.setGeometry(QRect(200, 130, 141, 31))
-        self.invalid.setStyleSheet(u"font: 12pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 0, 0);")
         self.login = QPushButton(self.centralwidget)
         self.login.setObjectName(u"login")
         self.login.setGeometry(QRect(350, 420, 91, 21))
@@ -128,7 +123,6 @@ class Ui_Dialog(object):
         self.label.setText(QCoreApplication.translate("Dialog", u"Sign up", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Confirm Pass", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Already have an account? ", None))
-        self.invalid.setText(QCoreApplication.translate("Dialog", u"Invalid email", None))
         self.login.setText(QCoreApplication.translate("Dialog", u"Click here!", None))
     # retranslateUi
 
