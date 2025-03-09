@@ -46,12 +46,12 @@
      <rect>
       <x>50</x>
       <y>170</y>
-      <width>111</width>
+      <width>51</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>ID Reserva</string>
+     <string>Id reserva</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -64,7 +64,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Metodo de Pago</string>
+     <string>Método de pago</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -165,7 +165,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Introduce el ID del pago</string>
+     <string>Introduce el id del pago</string>
     </property>
    </widget>
    <widget class="QPushButton" name="bt_eliminar_pago">

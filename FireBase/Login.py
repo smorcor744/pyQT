@@ -111,13 +111,3 @@ class CreateAcc(QMainWindow):
         self.login = Login()  # Reusamos Login aquí
         self.login.show()
         self.close()  # Cierra la ventana actual de creación de cuenta
-
-if __name__ == "__main__":
-    ejecutar_sql()
-
-    app = QApplication(sys.argv)  # Esto debe ir al principio, antes de crear cualquier ventana
-
-    login_window = Login()  # Aquí instanciamos Login
-    login_window.show()
-
-    sys.exit(app.exec())  # Ejecuta la aplicación y entra al bucle de eventos
