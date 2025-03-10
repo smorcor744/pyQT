@@ -62,8 +62,8 @@ class VentanaHabitaciones(QMainWindow):
             QMessageBox.warning(self, "Advertencia", "No hay habitaciones registradas.")
         else:
             self.tablahabitaciones.setRowCount(len(habitaciones))
-            self.tablahabitaciones.setColumnCount(6)
-            self.tablahabitaciones.setHorizontalHeaderLabels(["ID, Número", "Precio por Noche","Tipo" , "Disponible"])
+            self.tablahabitaciones.setColumnCount(5)
+            self.tablahabitaciones.setHorizontalHeaderLabels(["ID", "Número", "Precio por Noche","Tipo" , "Disponible"])
 
             for row, habitacion in enumerate(habitaciones):
                 for col, value in enumerate(habitacion):

@@ -1,13 +1,12 @@
 import sqlite3
+import os
 
 class BD_empleados():
 
-    def __init__(self, db_name="hotel.db"):
-        self.db_name = db_name
-
     def _conectar(self):
         """Método privado para realizar la conexión a la base de datos."""
-        return sqlite3.connect(self.db_name)
+        bd_file = os.path.join(os.path.dirname(__file__), "hotel.db")
+        return sqlite3.connect(bd_file)
 
     def insertar_empleado(self, nombre, apellido, cargo, email, telefono):
         """Inserta un nuevo empleado en la base de datos."""

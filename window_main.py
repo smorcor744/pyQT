@@ -72,13 +72,3 @@ class VentanaPrincipal(QMainWindow):
         self.Login = Login()
         self.Login.show()
         self.hide()
-
-if __name__ == "__main__":
-    
-
-    app = QApplication(sys.argv)  # Esto debe ir al principio, antes de crear cualquier ventana
-
-    login_window = VentanaPrincipal()  # Aquí instanciamos Login
-    login_window.show()
-
-    sys.exit(app.exec())  # Ejecuta la aplicación y entra al bucle de eventos
