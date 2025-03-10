@@ -1,21 +1,27 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-from bd.bd_habitaciones import BD_habitaciones
+from bd_habitaciones import BD_habitaciones
+import os
 
 class VentanaHabitaciones(QMainWindow):
     def __init__(self):
         super(VentanaHabitaciones, self).__init__()
+        ui_file = os.path.join(os.path.dirname(__file__), "habitaciones.ui")
 
-        uic.loadUi("./habitacion/habitaciones.ui", self)
+        uic.loadUi(ui_file, self)
         self.setWindowTitle("Registro de Habitaciones")
 
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        fondo = os.path.join(os.path.dirname(__file__), "fondo.jpg")
+        fondo = fondo.replace("\\", "/")  # Asegura compatibilidad con QSS en Windows
+
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url("{fondo}");  /* Se agregan comillas */
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
 
         # Conectar botones con funciones
@@ -124,7 +130,7 @@ class VentanaHabitaciones(QMainWindow):
             QMessageBox.warning(self, "Error", msg)
 
     def ir_atras(self):
-        from principal.window_main import VentanaPrincipal
+        from window_main import VentanaPrincipal
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.hide()

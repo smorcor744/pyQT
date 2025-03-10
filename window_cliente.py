@@ -2,22 +2,28 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-from bd.bd_clientes import BD_clientes
+from bd_clientes import BD_clientes
+import os
 
 class VentanaClientes(QMainWindow):
     def __init__(self):
         super(VentanaClientes, self).__init__()
 
-        uic.loadUi("./cliente/registro_user.ui",self)
+        ui_file = os.path.join(os.path.dirname(__file__), "registro_user.ui")
+
+        uic.loadUi(ui_file,self)
         self.setWindowTitle("Registro Cliente")
 
+        fondo = os.path.join(os.path.dirname(__file__), "fondo.jpg")
+        fondo = fondo.replace("\\", "/")  # Asegura compatibilidad con QSS en Windows
+
         # Establecer la imagen de fondo usando CSS
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url("{fondo}");  /* Se agregan comillas */
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
 
         self.bt_registrar_cliente.clicked.connect(self.registrar_cliente)
@@ -144,7 +150,7 @@ class VentanaClientes(QMainWindow):
     
     # Vuelve a la ventana principal
     def ir_atras(self):
-        from principal.window_main import VentanaPrincipal
+        from window_main import VentanaPrincipal
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.hide()

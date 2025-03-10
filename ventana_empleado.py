@@ -2,24 +2,26 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-from bd.bd_empleados import BD_empleados  # Importa la clase BD_empleados
+from bd_empleados import BD_empleados  # Importa la clase BD_empleados
 import os
 
 class VentanaEmpleados(QMainWindow):
     def __init__(self):
         super(VentanaEmpleados, self).__init__()
 
-        ui_file = os.path.join(os.path.dirname(__file__), "empleado/ventana_empleado.ui")
+        ui_file = os.path.join(os.path.dirname(__file__), "ventana_empleado.ui")
         uic.loadUi(ui_file, self)
 
+        fondo = os.path.join(os.path.dirname(__file__), "fondo.jpg")
+        fondo = fondo.replace("\\", "/")  # Asegura compatibilidad con QSS en Windows
 
         # Establecer la imagen de fondo usando CSS
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url("{fondo}");  /* Se agregan comillas */
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
 
         # Conectar botones a sus funciones
@@ -146,7 +148,7 @@ class VentanaEmpleados(QMainWindow):
 
     def ir_atras(self):
         """Vuelve a la ventana principal."""
-        from principal.window_main import VentanaPrincipal
+        from window_main import VentanaPrincipal
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.hide()

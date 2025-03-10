@@ -24,17 +24,22 @@ def ejecutar_sql():
 class Login(QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi("FireBase/ui/login.ui", self)
+        ui_file = os.path.join(os.path.dirname(__file__), "login.ui")
+        loadUi(ui_file, self)
 
-        os.path.join(os.path.dirname(__file__), "login.ui")
-        
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        fondo = os.path.join(os.path.dirname(__file__), "fondo.jpg")
+        fondo = fondo.replace("\\", "/")  # Asegura compatibilidad con QSS en Windows
+
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url("{fondo}");  /* Se agregan comillas */
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
+
+
         self.loginbutton.clicked.connect(self.loginfunction)
 
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
@@ -63,7 +68,7 @@ class Login(QMainWindow):
     
     def gotomain(self):
         # Aquí instanciamos la ventana principal correctamente
-        from principal.window_main import VentanaPrincipal
+        from window_main import VentanaPrincipal
         self.window_main = VentanaPrincipal()
         self.window_main.show()
         self.close()  # Cierra la ventana de login actual
@@ -77,14 +82,22 @@ class Login(QMainWindow):
 class CreateAcc(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("""
-            QMainWindow {
-                background-image: url(fondo.jpg);
+        ui_file = os.path.join(os.path.dirname(__file__), "createacc.ui")
+        loadUi(ui_file, self)
+
+
+        fondo = os.path.join(os.path.dirname(__file__), "fondo.jpg")
+        fondo = fondo.replace("\\", "/")  # Asegura compatibilidad con QSS en Windows
+
+        # Establecer la imagen de fondo usando CSS
+        self.setStyleSheet(f"""
+            QMainWindow {{
+                background-image: url("{fondo}");  /* Se agregan comillas */
                 background-position: center;
                 background-repeat: no-repeat;
-            }
+            }}
         """)
-        loadUi("FireBase/ui/createacc.ui", self)
+        loadUi(ui_file, self)
         self.signupbutton.clicked.connect(self.createaccfunction)
         self.password.setEchoMode(QLineEdit.EchoMode.Password)
         self.confirmpass.setEchoMode(QLineEdit.EchoMode.Password)
